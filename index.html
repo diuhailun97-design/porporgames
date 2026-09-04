@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="婆婆健腦樂園">
+  <title>婆婆健腦樂園 - 益智小遊戲</title>
+  <style>
+    :root {
+      --bg-color: #F7F4EB;
+      --card-bg: #FFFFFF;
+      --text-main: #2C2A29;
+      --primary: #C84B31;
+      --secondary: #2D6A4F;
+      --border-color: #D3CBB8;
+      --selected-cell: #FFF3B0;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    body {
+      margin: 0;
+      padding: 16px;
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang HK", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    header {
+      width: 100%;
+      max-width: 780px;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      margin: 0 0 6px 0;
+      font-size: 34px;
+      color: var(--primary);
+      letter-spacing: 2px;
+    }
+
+    .subtitle {
+      font-size: 20px;
+      color: #666;
+      margin: 0 0 14px 0;
+    }
+
+    .nav-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      max-width: 780px;
+      margin-bottom: 18px;
+    }
+
+    .tab-btn {
+      flex: 1;
+      padding: 16px 10px;
+      font-size: 24px;
+      font-weight: bold;
+      border: 3px solid var(--border-color);
+      border-radius: 16px;
+      background: #EFE9D9;
+      color: #555;
+      cursor: pointer;
+      touch-action: manipulation;
+    }
+
+    .tab-btn.active {
+      background: var(--primary);
+      color: #FFF;
+      border-color: var(--primary);
+      box-shadow: 0 4px 10px rgba(200, 75, 49, 0.3);
+    }
+
+    .game-container {
+      width: 100%;
+      max-width: 780px;
+      background: var(--card-bg);
+      border: 3px solid var(--border-color);
+      border-radius: 20px;
+      padding: 24px 20px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .game-container.active {
+      display: flex;
+    }
+
+    /* 成語猜猜 */
+    .idiom-question-box {
+      background: #FAF8F2;
+      border: 3px solid var(--border-color);
+      border-radius: 16px;
+      padding: 24px;
+      width: 100%;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .idiom-prompt {
+      font-size: 22px;
+      color: #777;
+      margin-bottom: 12px;
+    }
+
+    .idiom-chars {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .char-box {
+      width: 72px;
+      height: 84px;
+      border: 3px solid #666;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 46px;
+      font-weight: 800;
+      background: #FFF;
+      color: var(--text-main);
+    }
+
+    .char-box.blank {
+      border: 3px dashed var(--primary);
+      background: #FFF7F5;
+      color: var(--primary);
+    }
+
+    .idiom-hint-text {
+      font-size: 22px;
+      color: #444;
+      background: #FFF;
+      padding: 12px 18px;
+      border-radius: 10px;
+      border: 2px dashed #E0D9C8;
+      display: inline-block;
+      max-width: 90%;
+      line-height: 1.5;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      width: 100%;
+      max-width: 500px;
+      margin-bottom: 24px;
+    }
+
+    .option-btn {
+      height: 80px;
+      font-size: 40px;
+      font-weight: bold;
+      border-radius: 16px;
+      border: 3px solid var(--secondary);
+      background: #FFF;
+      color: var(--secondary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.06);
+      touch-action: manipulation;
+    }
+
+    .option-btn:active {
+      background: var(--secondary);
+      color: #FFF;
+    }
+
+    /* 6x6 簡易數獨 */
+    .sudoku-board-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    .sudoku-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      width: 100%;
+      max-width: 480px;
+      aspect-ratio: 1;
+      border: 4px solid #222;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      background: #222;
+      gap: 2px;
+    }
+
+    .sudoku-cell {
+      background: #FFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 38px;
+      font-weight: bold;
+      cursor: pointer;
+      touch-action: manipulation;
+    }
+
+    .sudoku-cell:nth-child(3n) {
+      border-right: 3px solid #222;
+    }
+    .sudoku-cell:nth-child(n+13):nth-child(-n+18),
+    .sudoku-cell:nth-child(n+25):nth-child(-n+30) {
+      border-top: 3px solid #222;
+    }
+
+    .sudoku-cell.given {
+      background: #F0EDE6;
+      color: #333;
+    }
+
+    .sudoku-cell.selected {
+      background: var(--selected-cell) !important;
+      outline: 4px solid #E29578;
+      z-index: 2;
+    }
+
+    .sudoku-cell.user-filled {
+      color: var(--primary);
+    }
+
+    .sudoku-keypad {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
+      width: 100%;
+      max-width: 480px;
+      margin-bottom: 16px;
+    }
+
+    .key-btn {
+      height: 72px;
+      font-size: 36px;
+      font-weight: bold;
+      border-radius: 14px;
+      border: 3px solid var(--border-color);
+      background: #FFF;
+      color: #333;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      touch-action: manipulation;
+    }
+
+    .key-btn:active {
+      background: var(--primary);
+      color: #FFF;
+    }
+
+    .erase-btn {
+      background: #FCEAE6;
+      color: var(--primary);
+      border-color: #EAC4BD;
+      font-size: 24px;
+    }
+
+    .controls {
+      display: flex;
+      gap: 14px;
+      width: 100%;
+      max-width: 500px;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    .action-btn {
+      flex: 1;
+      padding: 16px 20px;
+      font-size: 24px;
+      font-weight: bold;
+      border-radius: 14px;
+      border: none;
+      background: var(--secondary);
+      color: #FFF;
+      cursor: pointer;
+      touch-action: manipulation;
+    }
+
+    .action-btn.alt {
+      background: #5A6B7C;
+    }
+
+    /* 提示彈窗 */
+    .feedback-banner {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      background: rgba(255, 255, 255, 0.98);
+      border: 5px solid var(--primary);
+      border-radius: 24px;
+      padding: 32px 40px;
+      text-align: center;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s ease;
+      max-width: 90%;
+    }
+
+    .feedback-banner.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .feedback-title {
+      font-size: 40px;
+      font-weight: 900;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    .feedback-body {
+      font-size: 26px;
+      color: #333;
+      margin-bottom: 24px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🌸 婆婆益智樂園 🌸</h1>
+    <div class="subtitle">每日動動腦，越玩越精神！</div>
+  </header>
+
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="switchTab('idiom')">📖 成語猜猜</button>
+    <button class="tab-btn" onclick="switchTab('sudoku')">🔢 簡易數獨</button>
+  </div>
+
+  <!-- 成語猜猜 -->
+  <div id="idiom-game" class="game-container active">
+    <div class="idiom-question-box">
+      <div class="idiom-prompt" id="idiom-round-info">第 1 / 5 題</div>
+      <div class="idiom-chars" id="idiom-display"></div>
+      <div class="idiom-hint-text" id="idiom-meaning">釋義載入中...</div>
+    </div>
+
+    <div class="options-grid" id="idiom-options"></div>
+
+    <div class="controls">
+      <button class="action-btn alt" onclick="prevIdiom()">⏮️ 上一題</button>
+      <button class="action-btn" onclick="nextIdiom()">下一題 ⏭️</button>
+    </div>
+  </div>
+
+  <!-- 簡易數獨 -->
+  <div id="sudoku-game" class="game-container">
+    <div style="font-size: 22px; color: #555; margin-bottom: 12px; text-align: center;">
+      每行、每列同每個 2×3 六宮格，填入 1 至 6 數字！
+    </div>
+    
+    <div class="sudoku-board-wrapper">
+      <div class="sudoku-grid" id="sudoku-grid"></div>
+      
+      <div class="sudoku-keypad">
+        <button class="key-btn" onclick="inputNumber(1)">1</button>
+        <button class="key-btn" onclick="inputNumber(2)">2</button>
+        <button class="key-btn" onclick="inputNumber(3)">3</button>
+        <button class="key-btn" onclick="inputNumber(4)">4</button>
+        <button class="key-btn" onclick="inputNumber(5)">5</button>
+        <button class="key-btn" onclick="inputNumber(6)">6</button>
+      </div>
+      
+      <div class="controls">
+        <button class="key-btn erase-btn" style="flex: 1; height: 60px;" onclick="inputNumber(0)">擦除 ⌫</button>
+        <button class="action-btn alt" style="flex: 1;" onclick="resetSudoku()">重設 🔄</button>
+        <button class="action-btn" style="flex: 1.2;" onclick="checkSudoku()">完成核對 ✔️</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="feedback-banner" id="feedback-modal">
+    <div class="feedback-title" id="fb-title">好叻呀！🎉</div>
+    <div class="feedback-body" id="fb-text">婆婆答啱喇！</div>
+    <button class="action-btn" onclick="closeFeedback()">繼續玩 🌸</button>
+  </div>
+
+  <script>
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    function playChime(success = true) {
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      const now = audioCtx.currentTime;
+      if (success) {
+        [523.25, 659.25, 783.99, 1046.50].forEach((freq, idx) => {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(freq, now + idx * 0.1);
+          gain.gain.setValueAtTime(0.18, now + idx * 0.1);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.1 + 0.5);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(now + idx * 0.1);
+          osc.stop(now + idx * 0.1 + 0.5);
+        });
+      } else {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(330, now);
+        osc.frequency.setValueAtTime(261, now + 0.15);
+        gain.gain.setValueAtTime(0.15, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(now);
+        osc.stop(now + 0.4);
+      }
+    }
+
+    function switchTab(tab) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.game-container').forEach(c => c.classList.remove('active'));
+      if (tab === 'idiom') {
+        document.querySelector('.tab-btn:nth-child(1)').classList.add('active');
+        document.getElementById('idiom-game').classList.add('active');
+      } else {
+        document.querySelector('.tab-btn:nth-child(2)').classList.add('active');
+        document.getElementById('sudoku-game').classList.add('active');
+      }
+    }
+
+    /* 成語資料庫 */
+    const idioms = [
+      {
+        chars: ['龍', '精', '虎', '猛'],
+        blankIndex: 1,
+        meaning: '比喻精力充沛，神采飛揚，身體非常健康健壯。',
+        options: ['精', '心', '生', '真']
+      },
+      {
+        chars: ['身', '體', '健', '康'],
+        blankIndex: 2,
+        meaning: '祝願生活平安無病無痛，身體強健安泰。',
+        options: ['健', '大', '樂', '安']
+      },
+      {
+        chars: ['出', '入', '平', '安'],
+        blankIndex: 3,
+        meaning: '出門同返屋企都順順利利，平平安安。',
+        options: ['安', '康', '定', '祥']
+      },
+      {
+        chars: ['開', '開', '心', '心'],
+        blankIndex: 0,
+        meaning: '心情舒暢愉快，每日滿臉笑容。',
+        options: ['開', '放', '歡', '喜']
+      },
+      {
+        chars: ['萬', '事', '勝', '意'],
+        blankIndex: 2,
+        meaning: '所有事情都比預期更加順心滿意。',
+        options: ['勝', '如', '稱', '吉']
+      }
+    ];
+
+    let currentIdiomIdx = 0;
+
+    function renderIdiom() {
+      const cur = idioms[currentIdiomIdx];
+      document.getElementById('idiom-round-info').innerText = `第 ${currentIdiomIdx + 1} / ${idioms.length} 題`;
+      document.getElementById('idiom-meaning').innerText = '💡 提示：' + cur.meaning;
+
+      const displayBox = document.getElementById('idiom-display');
+      displayBox.innerHTML = '';
+      cur.chars.forEach((c, idx) => {
+        const div = document.createElement('div');
+        div.className = 'char-box' + (idx === cur.blankIndex ? ' blank' : '');
+        div.innerText = idx === cur.blankIndex ? '？' : c;
+        div.id = `char-pos-${idx}`;
+        displayBox.appendChild(div);
+      });
+
+      const optionsBox = document.getElementById('idiom-options');
+      optionsBox.innerHTML = '';
+      cur.options.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.className = 'option-btn';
+        btn.innerText = opt;
+        btn.onclick = () => chooseOption(opt);
+        optionsBox.appendChild(btn);
+      });
+    }
+
+    function chooseOption(char) {
+      const cur = idioms[currentIdiomIdx];
+      const targetChar = cur.chars[cur.blankIndex];
+      const targetBox = document.getElementById(`char-pos-${cur.blankIndex}`);
+
+      if (char === targetChar) {
+        targetBox.innerText = char;
+        targetBox.style.color = 'var(--secondary)';
+        playChime(true);
+        showFeedback("好叻呀！🎉", `答啱喇！「${cur.chars.join('')}」！`);
+      } else {
+        playChime(false);
+        showFeedback("差少少，再試試！🌸", `選了「${char}」，再看看提示諗一諗！`);
+      }
+    }
+
+    function prevIdiom() {
+      if (currentIdiomIdx > 0) {
+        currentIdiomIdx--;
+        renderIdiom();
+      }
+    }
+
+    function nextIdiom() {
+      if (currentIdiomIdx < idioms.length - 1) {
+        currentIdiomIdx++;
+        renderIdiom();
+      } else {
+        currentIdiomIdx = 0;
+        renderIdiom();
+      }
+    }
+
+    /* 6x6 數獨資料 */
+    const initialPuzzle = [
+      [6, 3, 0, 0, 0, 0],
+      [4, 1, 6, 0, 0, 0],
+      [3, 0, 0, 2, 1, 0],
+      [0, 1, 5, 0, 0, 3],
+      [0, 0, 0, 1, 6, 0],
+      [0, 0, 0, 0, 5, 2]
+    ];
+
+    const solution = [
+      [6, 3, 2, 4, 5, 1],
+      [4, 1, 6, 5, 2, 3],
+      [3, 4, 5, 2, 1, 6],
+      [2, 1, 5, 6, 4, 3],
+      [5, 2, 3, 1, 6, 4],
+      [1, 6, 4, 3, 5, 2]
+    ];
+
+    let currentSudoku = JSON.parse(JSON.stringify(initialPuzzle));
+    let selectedRow = -1;
+    let selectedCol = -1;
+
+    function renderSudoku() {
+      const grid = document.getElementById('sudoku-grid');
+      grid.innerHTML = '';
+      for (let r = 0; r < 6; r++) {
+        for (let c = 0; c < 6; c++) {
+          const val = currentSudoku[r][c];
+          const isGiven = initialPuzzle[r][c] !== 0;
+          const cell = document.createElement('div');
+          cell.className = 'sudoku-cell' + (isGiven ? ' given' : (val !== 0 ? ' user-filled' : ''));
+          if (r === selectedRow && c === selectedCol) cell.classList.add('selected');
+          cell.innerText = val !== 0 ? val : '';
+          cell.onclick = () => selectCell(r, c, isGiven);
+          grid.appendChild(cell);
+        }
+      }
+    }
+
+    function selectCell(r, c, isGiven) {
+      if (isGiven) {
+        selectedRow = -1;
+        selectedCol = -1;
+      } else {
+        selectedRow = r;
+        selectedCol = c;
+      }
+      renderSudoku();
+    }
+
+    function inputNumber(num) {
+      if (selectedRow === -1 || selectedCol === -1) return;
+      if (initialPuzzle[selectedRow][selectedCol] !== 0) return;
+      currentSudoku[selectedRow][selectedCol] = num;
+      playChime(true);
+      renderSudoku();
+    }
+
+    function resetSudoku() {
+      currentSudoku = JSON.parse(JSON.stringify(initialPuzzle));
+      selectedRow = -1;
+      selectedCol = -1;
+      renderSudoku();
+    }
+
+    function checkSudoku() {
+      let isComplete = true;
+      let isCorrect = true;
+      for (let r = 0; r < 6; r++) {
+        for (let c = 0; c < 6; c++) {
+          if (currentSudoku[r][c] === 0) isComplete = false;
+          if (currentSudoku[r][c] !== solution[r][c]) isCorrect = false;
+        }
+      }
+
+      if (isCorrect && isComplete) {
+        playChime(true);
+        showFeedback("大功告成！🏆", "婆婆好厲害，成盤數獨完成得好工整！");
+      } else if (!isComplete) {
+        showFeedback("仲差少少空格！🌸", "仲有空格未填，慢慢搵唔使急！");
+      } else {
+        showFeedback("有一兩格填錯咗！💡", "留意睇下有無行或列數字重複，再改一改！");
+      }
+    }
+
+    function showFeedback(title, text) {
+      document.getElementById('fb-title').innerText = title;
+      document.getElementById('fb-text').innerText = text;
+      document.getElementById('feedback-modal').classList.add('show');
+    }
+
+    function closeFeedback() {
+      document.getElementById('feedback-modal').classList.remove('show');
+    }
+
+    renderIdiom();
+    renderSudoku();
+  </script>
+</body>
+</html>
