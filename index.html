@@ -517,15 +517,14 @@
       </div>
       
       <div class="controls">
-        <button class="key-btn erase-btn" style="flex: 1; min-width: 100px; height: 60px;" onclick="inputNumber(0)">擦除 ⌫</button>
-        <button class="action-btn alt" style="flex: 1;" onclick="resetSudoku()">重設 🔄</button>
-        <button class="action-btn" style="flex: 1.2;" onclick="checkSudoku()">完成核對 ✔️</button>
+        <button class="key-btn erase-btn" style="flex: 1; min-width: 100px; height: 64px;" onclick="inputNumber(0)">擦除 ⌫</button>
+        <button class="action-btn alt" style="flex: 1; height: 64px;" onclick="resetSudoku()">重設呢題 🔄</button>
       </div>
 
       <div class="controls" style="margin-top: 10px;">
-        <button class="action-btn alt" onclick="prevSudoku()">◀️ 上一題</button>
-        <button class="action-btn rand" onclick="randomSudoku()">隨機抽一題 🎲</button>
-        <button class="action-btn alt" onclick="nextSudoku()">下一題 ▶️</button>
+        <button class="action-btn alt" style="height: 64px;" onclick="prevSudoku()">◀️ 上一題</button>
+        <button class="action-btn rand" style="height: 64px;" onclick="randomSudoku()">隨機抽一題 🎲</button>
+        <button class="action-btn alt" style="height: 64px;" onclick="nextSudoku()">下一題 ▶️</button>
       </div>
     </div>
     <div class="source-tag">題庫來源：sudokusource.xml</div>
@@ -554,6 +553,25 @@
         </button>
         <button class="action-btn alt" style="height: 60px; font-size: 22px;" onclick="replayCurrentSet()">
           重溫呢一組 🔄
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 數獨全對完成慶祝彈窗 (SUDOKU VICTORY POPUP) -->
+  <div class="set-popup-overlay" id="sudoku-victory-popup">
+    <div class="set-popup-card">
+      <div class="set-popup-icon">🏆✨🎉</div>
+      <div class="set-popup-title" id="sudoku-victory-title">太叻喇！數獨全部答啱！</div>
+      <div class="set-popup-body" id="sudoku-victory-body">
+        婆婆好犀利呀！成盤 6×6 數獨全部填啱晒，頭腦好精明！現在為您前進去下一題！
+      </div>
+      <div class="set-popup-btns">
+        <button class="action-btn" style="height: 76px; font-size: 28px;" onclick="onSudokuGoNext()">
+          做下一題 ➡️
+        </button>
+        <button class="action-btn rand" style="height: 64px; font-size: 24px;" onclick="onSudokuGoRandom()">
+          隨機抽新題目 🎲
         </button>
       </div>
     </div>
@@ -1032,9 +1050,49 @@
     function inputNumber(num) {
       if (selectedRow === -1 || selectedCol === -1) return;
       if (initialCluesState[selectedRow][selectedCol] !== 0) return;
-      currentSudokuState[selectedRow][selectedCol] = num;
-      playChime(true);
-      renderSudokuGrid();
+
+      // 擦除動作
+      if (num === 0) {
+        currentSudokuState[selectedRow][selectedCol] = 0;
+        renderSudokuGrid();
+        return;
+      }
+
+      // 即時核對：立即檢查填入的數字是否等於答案
+      const correctNum = currentSolutionState[selectedRow][selectedCol];
+      if (num === correctNum) {
+        // 答對：填入並發出悅耳提示音
+        currentSudokuState[selectedRow][selectedCol] = num;
+        playChime(true);
+        renderSudokuGrid();
+
+        // 檢查是否整盤所有空格均已填妥
+        let isAllFilled = true;
+        for (let r = 0; r < 6; r++) {
+          for (let c = 0; c < 6; c++) {
+            if (currentSudokuState[r][c] === 0) {
+              isAllFilled = false;
+              break;
+            }
+          }
+          if (!isAllFilled) break;
+        }
+
+        if (isAllFilled) {
+          // 全部答對：奏響號角，取消選取，彈出專屬讚賞視窗並引導去新題目
+          playFanfare();
+          selectedRow = -1;
+          selectedCol = -1;
+          renderSudokuGrid();
+          setTimeout(() => {
+            showSudokuVictoryPopup();
+          }, 400);
+        }
+      } else {
+        // 答錯即刻彈 POPUP 提佢，不留錯字在格內
+        playChime(false);
+        showFeedback("差少少，留意呢格！🌸", `呢格填「${num}」唔係好啱，試下填其他數字諗一諗！`, false);
+      }
     }
 
     function resetSudoku() {
@@ -1048,24 +1106,25 @@
       renderSudokuGrid();
     }
 
-    function checkSudoku() {
-      let isComplete = true;
-      let isCorrect = true;
-      for (let r = 0; r < 6; r++) {
-        for (let c = 0; c < 6; c++) {
-          if (currentSudokuState[r][c] === 0) isComplete = false;
-          if (currentSudokuState[r][c] !== currentSolutionState[r][c]) isCorrect = false;
-        }
-      }
+    function showSudokuVictoryPopup() {
+      document.getElementById('sudoku-victory-title').innerText = `太叻喇！第 ${currentSudokuIdx + 1} 題全部答啱！🏆`;
+      document.getElementById('sudoku-victory-body').innerText = 
+        `婆婆好犀利呀！第 ${currentSudokuIdx + 1} 題 6×6 數獨全部填啱晒，頭腦好精明！現在為您前進去下一題！`;
+      document.getElementById('sudoku-victory-popup').classList.add('show');
+    }
 
-      if (isCorrect && isComplete) {
-        playFanfare();
-        showFeedback("大功告成！🏆", "婆婆好厲害，成盤數獨完成得好工整！", false);
-      } else if (!isComplete) {
-        showFeedback("仲差少少空格！🌸", "仲有空格未填，慢慢填唔使急！", false);
-      } else {
-        showFeedback("有一兩格填錯咗！💡", "留意睇下有無行或列數字重複，再改一改！", false);
-      }
+    // 完成後去下一題，唔停留喺同一個位
+    function onSudokuGoNext() {
+      document.getElementById('sudoku-victory-popup').classList.remove('show');
+      nextSudoku();
+      playChime(true);
+    }
+
+    // 完成後隨機抽新題目
+    function onSudokuGoRandom() {
+      document.getElementById('sudoku-victory-popup').classList.remove('show');
+      randomSudoku();
+      playChime(true);
     }
 
     function prevSudoku() {
