@@ -13,7 +13,10 @@
       --card-bg: #FFFFFF;
       --text-main: #2C2A29;
       --primary: #C84B31;
+      --primary-hover: #A33B24;
       --secondary: #2D6A4F;
+      --secondary-hover: #214F3B;
+      --accent: #E9C46A;
       --border-color: #D3CBB8;
       --selected-cell: #FFF3B0;
     }
@@ -75,6 +78,7 @@
       background: #EFE9D9;
       color: #555;
       cursor: pointer;
+      transition: all 0.2s ease;
       touch-action: manipulation;
     }
 
@@ -102,21 +106,49 @@
       display: flex;
     }
 
-    /* 成語猜猜 */
+    /* 組別導航列 */
+    .set-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 2px dashed #E0D9C8;
+    }
+
+    .set-title {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--secondary);
+    }
+
+    .set-select-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .set-select {
+      font-size: 20px;
+      font-weight: bold;
+      padding: 8px 14px;
+      border-radius: 10px;
+      border: 2px solid var(--border-color);
+      background: #FFF;
+      color: #333;
+      cursor: pointer;
+    }
+
+    /* 成語卡片 */
     .idiom-question-box {
       background: #FAF8F2;
       border: 3px solid var(--border-color);
       border-radius: 16px;
-      padding: 24px;
+      padding: 20px;
       width: 100%;
       text-align: center;
-      margin-bottom: 24px;
-    }
-
-    .idiom-prompt {
-      font-size: 22px;
-      color: #777;
-      margin-bottom: 12px;
+      margin-bottom: 22px;
     }
 
     .idiom-chars {
@@ -127,17 +159,18 @@
     }
 
     .char-box {
-      width: 72px;
-      height: 84px;
+      width: 76px;
+      height: 88px;
       border: 3px solid #666;
-      border-radius: 12px;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 46px;
+      font-size: 48px;
       font-weight: 800;
       background: #FFF;
       color: var(--text-main);
+      box-shadow: 0 3px 6px rgba(0,0,0,0.05);
     }
 
     .char-box.blank {
@@ -154,7 +187,7 @@
       border-radius: 10px;
       border: 2px dashed #E0D9C8;
       display: inline-block;
-      max-width: 90%;
+      max-width: 95%;
       line-height: 1.5;
     }
 
@@ -164,12 +197,12 @@
       gap: 16px;
       width: 100%;
       max-width: 500px;
-      margin-bottom: 24px;
+      margin-bottom: 22px;
     }
 
     .option-btn {
-      height: 80px;
-      font-size: 40px;
+      height: 84px;
+      font-size: 42px;
       font-weight: bold;
       border-radius: 16px;
       border: 3px solid var(--secondary);
@@ -291,7 +324,7 @@
 
     .action-btn {
       flex: 1;
-      padding: 16px 20px;
+      padding: 16px 18px;
       font-size: 24px;
       font-weight: bold;
       border-radius: 14px;
@@ -306,16 +339,16 @@
       background: #5A6B7C;
     }
 
-    /* 提示彈窗 */
+    /* 單題回饋彈窗 */
     .feedback-banner {
       position: fixed;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%) scale(0.8);
+      transform: translate(-50%, -50%) scale(0.85);
       background: rgba(255, 255, 255, 0.98);
       border: 5px solid var(--primary);
       border-radius: 24px;
-      padding: 32px 40px;
+      padding: 30px 36px;
       text-align: center;
       box-shadow: 0 10px 40px rgba(0,0,0,0.25);
       z-index: 100;
@@ -323,6 +356,7 @@
       pointer-events: none;
       transition: all 0.25s ease;
       max-width: 90%;
+      width: 480px;
     }
 
     .feedback-banner.show {
@@ -332,7 +366,7 @@
     }
 
     .feedback-title {
-      font-size: 40px;
+      font-size: 38px;
       font-weight: 900;
       color: var(--primary);
       margin-bottom: 12px;
@@ -342,6 +376,67 @@
       font-size: 26px;
       color: #333;
       margin-bottom: 24px;
+      line-height: 1.4;
+    }
+
+    /* 一組完成慶祝彈窗 (SPECIAL SET COMPLETION POPUP) */
+    .set-popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 200;
+    }
+
+    .set-popup-overlay.show {
+      display: flex;
+    }
+
+    .set-popup-card {
+      background: #FFF;
+      border: 6px solid #E9C46A;
+      border-radius: 28px;
+      padding: 36px 32px;
+      text-align: center;
+      max-width: 90%;
+      width: 520px;
+      box-shadow: 0 16px 50px rgba(0,0,0,0.3);
+      animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.7); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .set-popup-icon {
+      font-size: 64px;
+      margin-bottom: 8px;
+    }
+
+    .set-popup-title {
+      font-size: 38px;
+      font-weight: 900;
+      color: var(--primary);
+      margin-bottom: 14px;
+    }
+
+    .set-popup-body {
+      font-size: 26px;
+      color: #333;
+      margin-bottom: 28px;
+      line-height: 1.5;
+    }
+
+    .set-popup-btns {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
     }
   </style>
 </head>
@@ -353,14 +448,23 @@
   </header>
 
   <div class="nav-tabs">
-    <button class="tab-btn active" onclick="switchTab('idiom')">📖 成語猜猜</button>
+    <button class="tab-btn active" onclick="switchTab('idiom')">📖 成語猜猜 (共300題)</button>
     <button class="tab-btn" onclick="switchTab('sudoku')">🔢 簡易數獨</button>
   </div>
 
   <!-- 成語猜猜 -->
   <div id="idiom-game" class="game-container active">
+    <!-- 組別與題號頂部導航 -->
+    <div class="set-bar">
+      <div class="set-title" id="idiom-progress-label">第 1 組 ・ 第 1 / 10 題</div>
+      <div class="set-select-wrapper">
+        <label for="set-dropdown" style="font-size: 18px; color: #666;">換組：</label>
+        <select id="set-dropdown" class="set-select" onchange="onSelectSet(this.value)">
+        </select>
+      </div>
+    </div>
+
     <div class="idiom-question-box">
-      <div class="idiom-prompt" id="idiom-round-info">第 1 / 5 題</div>
       <div class="idiom-chars" id="idiom-display"></div>
       <div class="idiom-hint-text" id="idiom-meaning">釋義載入中...</div>
     </div>
@@ -399,18 +503,55 @@
     </div>
   </div>
 
+  <!-- 單題回饋彈窗 -->
   <div class="feedback-banner" id="feedback-modal">
     <div class="feedback-title" id="fb-title">好叻呀！🎉</div>
     <div class="feedback-body" id="fb-text">婆婆答啱喇！</div>
-    <button class="action-btn" onclick="closeFeedback()">繼續玩 🌸</button>
+    <button class="action-btn" id="fb-btn" onclick="closeFeedback()">下一題 ⏭️</button>
+  </div>
+
+  <!-- 一整組完成的慶祝彈窗 (SET POPUP) -->
+  <div class="set-popup-overlay" id="set-popup">
+    <div class="set-popup-card">
+      <div class="set-popup-icon">🏆✨🎉</div>
+      <div class="set-popup-title" id="set-popup-title">太叻喇！第 1 組完成！</div>
+      <div class="set-popup-body" id="set-popup-body">
+        婆婆真係好精明，呢組 10 題成語全部順利過關！每日動腦，越玩越健康！
+      </div>
+      <div class="set-popup-btns">
+        <button class="action-btn" style="height: 72px; font-size: 26px;" id="next-set-btn" onclick="goToNextSet()">
+          挑戰下一組 (第 2 組) ➡️
+        </button>
+        <button class="action-btn alt" style="height: 60px; font-size: 22px;" onclick="replayCurrentSet()">
+          重溫呢一組 🔄
+        </button>
+      </div>
+    </div>
   </div>
 
   <script>
+    /* 300 個成語資料庫 (分成 30 組，每組 10 題) */
+    const idiomSets = [[{"chars": ["龍", "精", "虎", "猛"], "blankIndex": 1, "meaning": "比喻精力充沛，神采飛揚，身體健壯。", "options": ["精", "德", "終", "尊"]}, {"chars": ["身", "體", "健", "康"], "blankIndex": 2, "meaning": "祝願生活平安無病無痛，身體強健安泰。", "options": ["長", "海", "雨", "健"]}, {"chars": ["出", "入", "平", "安"], "blankIndex": 3, "meaning": "祝願出門同返屋企都平平安安，順順利利。", "options": ["安", "重", "泰", "天"]}, {"chars": ["開", "開", "心", "心"], "blankIndex": 0, "meaning": "心情舒暢愉快，每日滿臉笑容。", "options": ["美", "情", "春", "開"]}, {"chars": ["萬", "事", "勝", "意"], "blankIndex": 2, "meaning": "所有事情都稱心如意，比想像中更好。", "options": ["有", "明", "勝", "禮"]}, {"chars": ["長", "命", "百", "歲"], "blankIndex": 1, "meaning": "祝願長者長壽健康，福壽雙全。", "options": ["生", "情", "命", "風"]}, {"chars": ["福", "如", "東", "海"], "blankIndex": 0, "meaning": "比喻福氣如同東海之水一樣浩大無窮。", "options": ["長", "福", "足", "久"]}, {"chars": ["壽", "比", "南", "山"], "blankIndex": 0, "meaning": "祝願壽命如同南山一樣長久不衰。", "options": ["開", "壽", "美", "風"]}, {"chars": ["吉", "祥", "如", "意"], "blankIndex": 1, "meaning": "吉祥幸運，萬事都能符合心意。", "options": ["德", "安", "祥", "和"]}, {"chars": ["四", "季", "平", "安"], "blankIndex": 2, "meaning": "一年四季春夏秋冬都平平安安。", "options": ["平", "地", "報", "生"]}], [{"chars": ["心", "想", "事", "成"], "blankIndex": 1, "meaning": "心裏想的美好願望都能實現。", "options": ["源", "始", "想", "神"]}, {"chars": ["笑", "口", "常", "開"], "blankIndex": 0, "meaning": "經常面帶微笑，保持樂觀開朗的心境。", "options": ["祥", "長", "笑", "吉"]}, {"chars": ["家", "庭", "和", "睦"], "blankIndex": 3, "meaning": "全家人相處融洽和洽，幸福溫馨。", "options": ["春", "睦", "雨", "德"]}, {"chars": ["子", "孫", "滿", "堂"], "blankIndex": 2, "meaning": "兒孫眾多，家族興旺，承歡膝下。", "options": ["滿", "精", "圓", "正"]}, {"chars": ["步", "步", "高", "陞"], "blankIndex": 2, "meaning": "比喻職位、學業或生活逐步上升提高。", "options": ["公", "福", "久", "高"]}, {"chars": ["金", "玉", "滿", "堂"], "blankIndex": 0, "meaning": "形容財富極多，亦比喻學識豐富。", "options": ["溫", "金", "德", "花"]}, {"chars": ["歲", "歲", "平", "安"], "blankIndex": 1, "meaning": "年年歲歲都平安無事，生活平順。", "options": ["歲", "重", "終", "志"]}, {"chars": ["恭", "喜", "發", "財"], "blankIndex": 2, "meaning": "恭賀他人發財致富，生活豐足。", "options": ["樂", "發", "精", "康"]}, {"chars": ["年", "年", "有", "餘"], "blankIndex": 2, "meaning": "每年都有盈餘，生活富足不虞匱乏。", "options": ["生", "意", "有", "心"]}, {"chars": ["五", "福", "臨", "門"], "blankIndex": 0, "meaning": "長壽、富貴、康寧、好德、善終皆降臨家中。", "options": ["玉", "安", "五", "長"]}], [{"chars": ["風", "調", "雨", "順"], "blankIndex": 1, "meaning": "風雨及時適量，象徵生活平順安泰。", "options": ["坦", "步", "公", "調"]}, {"chars": ["國", "泰", "民", "安"], "blankIndex": 1, "meaning": "國家太平，人民安居樂業。", "options": ["尊", "海", "平", "泰"]}, {"chars": ["花", "好", "月", "圓"], "blankIndex": 1, "meaning": "比喻生活美好圓滿，家庭幸福。", "options": ["重", "石", "好", "潔"]}, {"chars": ["歡", "天", "喜", "地"], "blankIndex": 0, "meaning": "形容非常歡樂高興的熱鬧景象。", "options": ["坦", "歡", "美", "安"]}, {"chars": ["喜", "氣", "洋", "洋"], "blankIndex": 1, "meaning": "到處充滿歡樂喜慶的氣氛。", "options": ["心", "氣", "情", "恩"]}, {"chars": ["吉", "星", "高", "照"], "blankIndex": 0, "meaning": "吉祥之星在頭頂照耀，萬事順遂。", "options": ["吉", "清", "平", "積"]}, {"chars": ["一", "帆", "風", "順"], "blankIndex": 2, "meaning": "船掛滿帆順風行駛，比喻前程順暢無阻。", "options": ["和", "圓", "善", "風"]}, {"chars": ["雙", "喜", "臨", "門"], "blankIndex": 0, "meaning": "兩件大喜事同時到來。", "options": ["光", "志", "雙", "情"]}, {"chars": ["三", "陽", "開", "泰"], "blankIndex": 0, "meaning": "冬去春來，陰消陽長，萬事吉祥。", "options": ["愛", "祥", "三", "海"]}, {"chars": ["四", "通", "八", "達"], "blankIndex": 1, "meaning": "道路交通十分暢通，通向四面八方。", "options": ["意", "人", "吉", "通"]}], [{"chars": ["六", "六", "大", "順"], "blankIndex": 2, "meaning": "事事順心，非常吉利順利。", "options": ["坦", "和", "志", "大"]}, {"chars": ["七", "星", "高", "照"], "blankIndex": 1, "meaning": "福星高照，吉祥如意。", "options": ["有", "長", "星", "筆"]}, {"chars": ["八", "方", "來", "財"], "blankIndex": 2, "meaning": "財源廣進，從四面八方滾滾而來。", "options": ["意", "尊", "來", "致"]}, {"chars": ["九", "九", "歸", "一"], "blankIndex": 1, "meaning": "繞了一圈最後歸結為本源，圓滿之意。", "options": ["九", "萬", "花", "祥"]}, {"chars": ["十", "全", "十", "美"], "blankIndex": 2, "meaning": "各方面都十分完美，毫無瑕疵。", "options": ["意", "吉", "久", "十"]}, {"chars": ["百", "年", "好", "合"], "blankIndex": 2, "meaning": "夫妻恩愛和睦，永遠相親相愛。", "options": ["有", "好", "和", "足"]}, {"chars": ["千", "事", "吉", "祥"], "blankIndex": 1, "meaning": "千般萬事都吉祥平安。", "options": ["愛", "事", "龍", "心"]}, {"chars": ["萬", "壽", "無", "疆"], "blankIndex": 1, "meaning": "祝願長壽沒有盡頭，極高壽考。", "options": ["如", "石", "壽", "喜"]}, {"chars": ["春", "風", "得", "意"], "blankIndex": 2, "meaning": "春風拂面，事情順利，心情十分舒暢。", "options": ["石", "得", "正", "重"]}, {"chars": ["神", "采", "飛", "揚"], "blankIndex": 2, "meaning": "精神飽滿，神情意氣昂揚。", "options": ["始", "少", "飛", "安"]}], [{"chars": ["神", "采", "奕", "奕"], "blankIndex": 2, "meaning": "精神極為旺盛，容光煥發。", "options": ["奕", "福", "泰", "公"]}, {"chars": ["精", "神", "奕", "奕"], "blankIndex": 0, "meaning": "形容人精神飽滿，非常有活力。", "options": ["精", "月", "風", "人"]}, {"chars": ["活", "力", "充", "沛"], "blankIndex": 1, "meaning": "充滿體力同元氣，生氣勃勃。", "options": ["地", "力", "多", "如"]}, {"chars": ["生", "龍", "活", "虎"], "blankIndex": 2, "meaning": "活潑矯健，生氣勃勃，極具生命力。", "options": ["石", "吉", "活", "恩"]}, {"chars": ["生", "氣", "勃", "勃"], "blankIndex": 2, "meaning": "形容充滿生命力，富有朝氣。", "options": ["石", "花", "禮", "勃"]}, {"chars": ["朝", "氣", "蓬", "勃"], "blankIndex": 1, "meaning": "充滿初生朝陽般的朝氣與生機。", "options": ["精", "石", "氣", "吉"]}, {"chars": ["生", "機", "盎", "然"], "blankIndex": 2, "meaning": "充滿生機與活力，欣欣向榮。", "options": ["盎", "美", "終", "壽"]}, {"chars": ["欣", "欣", "向", "榮"], "blankIndex": 0, "meaning": "草木生長旺盛，比喻事業繁榮昌盛。", "options": ["公", "開", "欣", "善"]}, {"chars": ["繁", "花", "似", "錦"], "blankIndex": 2, "meaning": "花朵開得如美麗的錦緞，繁華美好。", "options": ["月", "似", "有", "正"]}, {"chars": ["鳥", "語", "花", "香"], "blankIndex": 2, "meaning": "鳥叫得好聽，花開得芬芳，春景優美。", "options": ["如", "花", "德", "圓"]}], [{"chars": ["春", "暖", "花", "開"], "blankIndex": 1, "meaning": "春天轉暖，百花盛開，大地生機盎然。", "options": ["潔", "山", "暖", "志"]}, {"chars": ["柳", "暗", "花", "明"], "blankIndex": 2, "meaning": "比喻在困境中突然迎來轉機與希望。", "options": ["美", "花", "公", "全"]}, {"chars": ["海", "闊", "天", "空"], "blankIndex": 1, "meaning": "天地寬闊，比喻心胸開朗、前途無量。", "options": ["闊", "近", "勝", "終"]}, {"chars": ["風", "和", "日", "麗"], "blankIndex": 2, "meaning": "微風和煦，陽光晴朗，天氣極好。", "options": ["海", "壽", "愛", "日"]}, {"chars": ["秋", "高", "氣", "爽"], "blankIndex": 1, "meaning": "秋天天空晴朗高遠，氣候涼爽舒適。", "options": ["高", "恩", "光", "祥"]}, {"chars": ["晴", "空", "萬", "里"], "blankIndex": 0, "meaning": "天空晴朗，沒有一絲雲彩。", "options": ["晴", "山", "大", "沙"]}, {"chars": ["碧", "空", "如", "洗"], "blankIndex": 0, "meaning": "天空湛藍得如同水洗過一樣清澈。", "options": ["碧", "善", "福", "重"]}, {"chars": ["冰", "清", "玉", "潔"], "blankIndex": 2, "meaning": "像冰那樣清澈，像玉那樣純潔高尚。", "options": ["沙", "雨", "玉", "愛"]}, {"chars": ["溫", "文", "爾", "雅"], "blankIndex": 1, "meaning": "態度溫和，舉止斯文有禮。", "options": ["萬", "龍", "文", "雨"]}, {"chars": ["知", "足", "常", "樂"], "blankIndex": 2, "meaning": "知道滿足的人，心中常常快樂。", "options": ["禮", "常", "恩", "壽"]}], [{"chars": ["和", "氣", "生", "財"], "blankIndex": 1, "meaning": "待人和善客氣，能帶來財富與好運。", "options": ["氣", "壽", "知", "始"]}, {"chars": ["善", "有", "善", "報"], "blankIndex": 1, "meaning": "做善事的人定會得到美好的回報。", "options": ["近", "祥", "心", "有"]}, {"chars": ["積", "少", "成", "多"], "blankIndex": 1, "meaning": "一點一滴積累起來，就會變成很多。", "options": ["尊", "始", "長", "少"]}, {"chars": ["聚", "沙", "成", "塔"], "blankIndex": 1, "meaning": "沙粒聚在一起也能堆成高塔，積累之力。", "options": ["泰", "情", "海", "沙"]}, {"chars": ["水", "滴", "石", "穿"], "blankIndex": 2, "meaning": "水滴不斷滴落能穿透堅石，形容堅持不懈。", "options": ["石", "天", "山", "海"]}, {"chars": ["持", "之", "以", "恆"], "blankIndex": 2, "meaning": "長久堅持下去，不輕易放棄。", "options": ["以", "禮", "壽", "始"]}, {"chars": ["堅", "持", "不", "懈"], "blankIndex": 2, "meaning": "堅持到底，一點也不鬆懈怠慢。", "options": ["大", "玉", "喜", "不"]}, {"chars": ["熟", "能", "生", "巧"], "blankIndex": 1, "meaning": "常常練習做熟練了，自然能掌握巧妙方法。", "options": ["海", "能", "龍", "圓"]}, {"chars": ["循", "序", "漸", "進"], "blankIndex": 1, "meaning": "按一定的順序與步驟逐步推進。", "options": ["近", "康", "序", "和"]}, {"chars": ["兢", "兢", "業", "業"], "blankIndex": 0, "meaning": "做事小心謹慎，認真踏實。", "options": ["安", "兢", "正", "美"]}], [{"chars": ["勤", "儉", "持", "家"], "blankIndex": 1, "meaning": "勤勞節儉來操持管理家庭。", "options": ["春", "康", "石", "儉"]}, {"chars": ["克", "勤", "克", "儉"], "blankIndex": 1, "meaning": "既能勤勞又能節儉，持家有道。", "options": ["長", "勤", "春", "足"]}, {"chars": ["腳", "踏", "實", "地"], "blankIndex": 2, "meaning": "做事踏實認真，不浮誇、不走捷徑。", "options": ["實", "禮", "坦", "風"]}, {"chars": ["實", "事", "求", "是"], "blankIndex": 1, "meaning": "從實際情況出發，探求客觀真實。", "options": ["德", "事", "少", "明"]}, {"chars": ["光", "明", "正", "大"], "blankIndex": 1, "meaning": "心懷坦蕩，舉止合乎正道。", "options": ["海", "明", "平", "清"]}, {"chars": ["堂", "堂", "正", "正"], "blankIndex": 2, "meaning": "光明磊落，為人行事無愧於心。", "options": ["正", "天", "溫", "清"]}, {"chars": ["問", "心", "無", "愧"], "blankIndex": 2, "meaning": "自己捫心自問，沒有做對不起人的事。", "options": ["祥", "信", "無", "圓"]}, {"chars": ["安", "貧", "樂", "道"], "blankIndex": 2, "meaning": "安於簡樸生活，堅守善良品德與樂趣。", "options": ["光", "和", "尊", "樂"]}, {"chars": ["安", "居", "樂", "業"], "blankIndex": 1, "meaning": "安定地居住，愉快地工作生活。", "options": ["居", "潔", "開", "知"]}, {"chars": ["豐", "衣", "足", "食"], "blankIndex": 0, "meaning": "穿的衣服暖和，吃的食物充裕，生活富足。", "options": ["祥", "豐", "龍", "源"]}], [{"chars": ["安", "居", "樂", "俗"], "blankIndex": 2, "meaning": "生活安定安詳，風俗淳樸。", "options": ["地", "樂", "精", "平"]}, {"chars": ["歡", "聚", "一", "堂"], "blankIndex": 1, "meaning": "親友歡歡喜喜聚在一起。", "options": ["山", "聚", "精", "步"]}, {"chars": ["其", "樂", "融", "融"], "blankIndex": 1, "meaning": "大家融洽和諧，氣氛非常歡樂。", "options": ["泰", "致", "樂", "石"]}, {"chars": ["和", "顏", "悅", "色"], "blankIndex": 2, "meaning": "面容和藹可親，說話態度親切溫和。", "options": ["沙", "穿", "風", "悅"]}, {"chars": ["慈", "眉", "善", "目"], "blankIndex": 1, "meaning": "形容老人家面容慈祥和藹。", "options": ["眉", "信", "吉", "萬"]}, {"chars": ["鶴", "髮", "童", "顏"], "blankIndex": 0, "meaning": "白髮如鶴，面色如孩童紅潤，高壽健康。", "options": ["勝", "鶴", "德", "報"]}, {"chars": ["返", "老", "還", "童"], "blankIndex": 1, "meaning": "由衰老回復年輕，形容老人精力充沛。", "options": ["全", "老", "和", "吉"]}, {"chars": ["老", "當", "益", "壯"], "blankIndex": 1, "meaning": "年紀雖老，但心志與體魄更加健旺。", "options": ["當", "平", "穿", "重"]}, {"chars": ["身", "手", "矯", "健"], "blankIndex": 2, "meaning": "身體動作敏捷靈活。", "options": ["吉", "矯", "全", "泰"]}, {"chars": ["耳", "聰", "目", "明"], "blankIndex": 1, "meaning": "耳朵聽得清，眼睛看得明，形容頭腦清醒。", "options": ["穿", "聰", "和", "德"]}], [{"chars": ["心", "明", "眼", "亮"], "blankIndex": 2, "meaning": "心思明白，目光銳利清楚。", "options": ["少", "眼", "喜", "風"]}, {"chars": ["豁", "達", "大", "度"], "blankIndex": 0, "meaning": "心胸開闊寬宏，待人處事度量大。", "options": ["圓", "祥", "知", "豁"]}, {"chars": ["寬", "大", "為", "懷"], "blankIndex": 1, "meaning": "心懷寬大，寬容體諒他人。", "options": ["情", "石", "大", "勝"]}, {"chars": ["平", "易", "近", "人"], "blankIndex": 1, "meaning": "待人態度謙和親切，令人容易親近。", "options": ["報", "易", "氣", "情"]}, {"chars": ["彬", "彬", "有", "禮"], "blankIndex": 2, "meaning": "舉止斯文文雅，非常有禮貌。", "options": ["近", "有", "步", "長"]}, {"chars": ["尊", "老", "愛", "幼"], "blankIndex": 1, "meaning": "尊敬長輩，愛護晚輩幼童。", "options": ["志", "和", "老", "康"]}, {"chars": ["孝", "感", "動", "天"], "blankIndex": 1, "meaning": "孝心誠摯感人，感動天地。", "options": ["信", "坦", "感", "穿"]}, {"chars": ["敬", "老", "尊", "賢"], "blankIndex": 0, "meaning": "尊敬長者與有德才的賢能之人。", "options": ["敬", "雨", "穿", "溫"]}, {"chars": ["相", "敬", "如", "賓"], "blankIndex": 1, "meaning": "夫妻相互尊重，如同對待賓客般客氣。", "options": ["敬", "喜", "穿", "意"]}, {"chars": ["互", "敬", "互", "愛"], "blankIndex": 2, "meaning": "彼此互相尊重、互相關懷喜愛。", "options": ["互", "全", "步", "氣"]}], [{"chars": ["情", "深", "似", "海"], "blankIndex": 1, "meaning": "感情如同大海一樣深沉濃厚。", "options": ["深", "玉", "美", "沙"]}, {"chars": ["恩", "重", "如", "山"], "blankIndex": 1, "meaning": "恩德像高山一樣厚重深遠。", "options": ["天", "海", "重", "康"]}, {"chars": ["飲", "水", "思", "源"], "blankIndex": 2, "meaning": "喝水時想起水源，比喻不忘根本與恩德。", "options": ["坦", "步", "安", "思"]}, {"chars": ["結", "草", "銜", "環"], "blankIndex": 1, "meaning": "比喻感恩圖報，至死不忘恩情。", "options": ["步", "草", "地", "祥"]}, {"chars": ["感", "恩", "圖", "報"], "blankIndex": 1, "meaning": "心存感激，並想方設法回報恩惠。", "options": ["祥", "玉", "穿", "恩"]}, {"chars": ["助", "人", "為", "樂"], "blankIndex": 1, "meaning": "把幫助他人當作自己最大的快樂。", "options": ["人", "勝", "近", "喜"]}, {"chars": ["急", "公", "好", "義"], "blankIndex": 1, "meaning": "熱心公益事業，喜好仗義助人。", "options": ["溫", "公", "清", "開"]}, {"chars": ["慷", "慨", "解", "囊"], "blankIndex": 1, "meaning": "毫不吝嗇地掏出錢財資助他人。", "options": ["福", "德", "始", "慨"]}, {"chars": ["雪", "中", "送", "炭"], "blankIndex": 2, "meaning": "在他人最困難時給予及時支援。", "options": ["圓", "送", "美", "報"]}, {"chars": ["成", "人", "之", "美"], "blankIndex": 1, "meaning": "成全別人的好事或美好願望。", "options": ["人", "花", "月", "意"]}], [{"chars": ["善", "始", "善", "終"], "blankIndex": 1, "meaning": "做事情從頭到尾都很認真負責。", "options": ["禮", "始", "海", "勝"]}, {"chars": ["有", "始", "有", "終"], "blankIndex": 1, "meaning": "做事情有開頭也有結尾，堅持到底。", "options": ["禮", "和", "致", "始"]}, {"chars": ["全", "心", "全", "意"], "blankIndex": 1, "meaning": "投入全部的心思和力量。", "options": ["和", "生", "心", "圓"]}, {"chars": ["專", "心", "致", "志"], "blankIndex": 1, "meaning": "心思專注，一心一意做某件事。", "options": ["近", "清", "心", "開"]}, {"chars": ["心", "無", "旁", "騖"], "blankIndex": 2, "meaning": "心裏沒有別的雜念，專注投入。", "options": ["勝", "康", "旁", "開"]}, {"chars": ["聚", "精", "會", "神"], "blankIndex": 1, "meaning": "精神高度集中，注意力非常專一。", "options": ["全", "開", "精", "氣"]}, {"chars": ["聚", "精", "凝", "神"], "blankIndex": 2, "meaning": "聚合精力，凝注心神。", "options": ["氣", "凝", "風", "報"]}, {"chars": ["目", "不", "轉", "睛"], "blankIndex": 2, "meaning": "眼睛凝神專注，一眼也不轉移。", "options": ["禮", "轉", "情", "溫"]}, {"chars": ["循", "規", "蹈", "矩"], "blankIndex": 1, "meaning": "嚴格遵守規矩制度，行事本分。", "options": ["風", "規", "重", "精"]}, {"chars": ["小", "心", "謹", "慎"], "blankIndex": 2, "meaning": "行事極為小心，謹防差錯。", "options": ["禮", "生", "謹", "致"]}], [{"chars": ["三", "思", "而", "行"], "blankIndex": 1, "meaning": "再三思考權衡清楚之後才採取行動。", "options": ["氣", "思", "勝", "花"]}, {"chars": ["深", "思", "熟", "慮"], "blankIndex": 2, "meaning": "深入周密地反覆思考琢磨。", "options": ["龍", "熟", "坦", "勝"]}, {"chars": ["深", "謀", "遠", "慮"], "blankIndex": 1, "meaning": "謀劃周密深遠，眼光長遠。", "options": ["安", "足", "謀", "明"]}, {"chars": ["胸", "有", "成", "竹"], "blankIndex": 2, "meaning": "畫竹前心裏已有成形竹子，比喻處事有把握。", "options": ["坦", "祥", "成", "筆"]}, {"chars": ["運", "籌", "帷", "幄"], "blankIndex": 1, "meaning": "在帳幕中籌劃謀略，決勝千里之外。", "options": ["致", "如", "步", "籌"]}, {"chars": ["錦", "囊", "妙", "計"], "blankIndex": 2, "meaning": "預先準備好的絕妙解決辦法。", "options": ["妙", "意", "海", "筆"]}, {"chars": ["神", "機", "妙", "算"], "blankIndex": 1, "meaning": "驚人的機智與巧妙的神算。", "options": ["機", "龍", "福", "少"]}, {"chars": ["足", "智", "多", "謀"], "blankIndex": 1, "meaning": "智慧過人，計謀點子非常多。", "options": ["和", "智", "坦", "信"]}, {"chars": ["博", "學", "多", "才"], "blankIndex": 1, "meaning": "學識廣博，多才多藝。", "options": ["如", "知", "學", "久"]}, {"chars": ["滿", "腹", "經", "綸"], "blankIndex": 2, "meaning": "形容人非常有才學與治國才能。", "options": ["沙", "勝", "尊", "經"]}], [{"chars": ["學", "富", "五", "車"], "blankIndex": 1, "meaning": "讀的書能裝滿五輛大車，形容學問淵博。", "options": ["志", "雨", "長", "富"]}, {"chars": ["才", "高", "八", "斗"], "blankIndex": 1, "meaning": "形容文才極高，天賦卓越。", "options": ["壽", "溫", "大", "高"]}, {"chars": ["出", "口", "成", "章"], "blankIndex": 2, "meaning": "話一說出來就是錦繡文章，極具文才。", "options": ["大", "地", "成", "玉"]}, {"chars": ["妙", "語", "連", "珠"], "blankIndex": 1, "meaning": "巧妙精妙的言語如串珠般源源不絕。", "options": ["禮", "泰", "精", "語"]}, {"chars": ["字", "字", "珠", "璣"], "blankIndex": 2, "meaning": "每個字句都像珍珠寶石般優美珍貴。", "options": ["喜", "珠", "玉", "氣"]}, {"chars": ["一", "諾", "千", "金"], "blankIndex": 1, "meaning": "一句許諾重於千金，言而極其有信。", "options": ["諾", "美", "福", "勝"]}, {"chars": ["言", "而", "有", "信"], "blankIndex": 2, "meaning": "說話算數，講究誠信。", "options": ["有", "花", "玉", "重"]}, {"chars": ["表", "裏", "如", "一"], "blankIndex": 2, "meaning": "外表與內心完全一致，誠實正直。", "options": ["筆", "壽", "如", "和"]}, {"chars": ["坦", "蕩", "胸", "懷"], "blankIndex": 1, "meaning": "心胸坦白開闊，毫無隱瞞。", "options": ["蕩", "開", "樂", "沙"]}, {"chars": ["光", "明", "磊", "落"], "blankIndex": 2, "meaning": "為人光明坦白，沒有任何不可告人之處。", "options": ["磊", "潔", "吉", "氣"]}], [{"chars": ["剛", "正", "不", "阿"], "blankIndex": 2, "meaning": "剛直正派，絕不曲意迎合或偏袒。", "options": ["開", "天", "不", "吉"]}, {"chars": ["大", "公", "無", "私"], "blankIndex": 1, "meaning": "辦事完全出於公心，不偏袒私利。", "options": ["志", "公", "積", "清"]}, {"chars": ["鐵", "面", "無", "私"], "blankIndex": 1, "meaning": "公正嚴明，不講私情。", "options": ["喜", "安", "意", "面"]}, {"chars": ["公", "私", "分", "明"], "blankIndex": 1, "meaning": "公事與私事界限劃分得清清楚楚。", "options": ["私", "志", "和", "積"]}, {"chars": ["潔", "身", "自", "好"], "blankIndex": 1, "meaning": "保持自身純潔，不與不良習氣同流合污。", "options": ["身", "禮", "祥", "終"]}, {"chars": ["冰", "清", "玉", "潤"], "blankIndex": 2, "meaning": "像冰玉般潔白溫潤，形容品格高潔。", "options": ["玉", "美", "善", "春"]}, {"chars": ["謙", "虛", "謹", "慎"], "blankIndex": 1, "meaning": "為人謙遜，做事謹慎周全。", "options": ["正", "吉", "風", "虛"]}, {"chars": ["虛", "懷", "若", "谷"], "blankIndex": 1, "meaning": "胸懷寬廣虛心，如同幽深山谷容納萬物。", "options": ["公", "懷", "如", "地"]}, {"chars": ["不", "驕", "不", "躁"], "blankIndex": 1, "meaning": "不驕傲自大，也不急躁冒進。", "options": ["龍", "坦", "驕", "萬"]}, {"chars": ["戒", "驕", "戒", "躁"], "blankIndex": 2, "meaning": "告誡自己要防範驕傲與浮躁。", "options": ["龍", "戒", "月", "溫"]}], [{"chars": ["穩", "紮", "穩", "打"], "blankIndex": 1, "meaning": "步步為營，基礎扎實，做事平穩可靠。", "options": ["尊", "紮", "和", "少"]}, {"chars": ["安", "步", "當", "車"], "blankIndex": 1, "meaning": "從容悠閒地步行，就像坐車一樣安適。", "options": ["泰", "恩", "溫", "步"]}, {"chars": ["悠", "然", "自", "得"], "blankIndex": 1, "meaning": "悠閒自在，心情舒暢舒適。", "options": ["然", "志", "恩", "風"]}, {"chars": ["怡", "然", "自", "樂"], "blankIndex": 1, "meaning": "高高興興，心中感到非常快樂安適。", "options": ["然", "恩", "和", "龍"]}, {"chars": ["閒", "情", "逸", "致"], "blankIndex": 2, "meaning": "閒適清幽的情趣與興致。", "options": ["逸", "樂", "人", "足"]}, {"chars": ["鳥", "語", "花", "笑"], "blankIndex": 2, "meaning": "形容大自然生機勃勃，環境清幽歡快。", "options": ["玉", "祥", "花", "美"]}, {"chars": ["繁", "星", "閃", "爍"], "blankIndex": 1, "meaning": "夜晚滿天繁星閃爍，景色美麗寧靜。", "options": ["泰", "積", "星", "終"]}, {"chars": ["明", "月", "清", "風"], "blankIndex": 2, "meaning": "明亮的月光與清涼的微風，比喻清雅境地。", "options": ["生", "全", "樂", "清"]}, {"chars": ["清", "風", "拂", "面"], "blankIndex": 1, "meaning": "清涼溫柔的微風輕輕吹在臉上。", "options": ["情", "風", "吉", "禮"]}, {"chars": ["綠", "草", "如", "茵"], "blankIndex": 1, "meaning": "碧綠的青草鋪得像綠色地毯一樣厚軟。", "options": ["萬", "喜", "草", "光"]}], [{"chars": ["花", "團", "錦", "簇"], "blankIndex": 2, "meaning": "花朵聚集得像美麗錦緞一樣燦爛五彩。", "options": ["錦", "喜", "全", "報"]}, {"chars": ["姹", "紫", "嫣", "紅"], "blankIndex": 1, "meaning": "形容各種顏色的花朵嬌豔美麗。", "options": ["紫", "潔", "安", "善"]}, {"chars": ["爭", "奇", "鬥", "艷"], "blankIndex": 1, "meaning": "百花競相展示奇特與艷麗。", "options": ["奇", "和", "終", "恩"]}, {"chars": ["五", "彩", "繽", "紛"], "blankIndex": 2, "meaning": "顏色繁多而絢麗多彩。", "options": ["繽", "福", "多", "愛"]}, {"chars": ["萬", "紫", "千", "紅"], "blankIndex": 1, "meaning": "形容百花齊放，色彩艷麗豐富。", "options": ["龍", "紫", "春", "月"]}, {"chars": ["百", "花", "齊", "放"], "blankIndex": 2, "meaning": "各種各樣的花朵同時盛開，一片繁榮。", "options": ["齊", "信", "意", "平"]}, {"chars": ["春", "色", "滿", "園"], "blankIndex": 2, "meaning": "春天的美麗景色洋溢在整個園子裏。", "options": ["近", "筆", "滿", "人"]}, {"chars": ["碩", "果", "累", "累"], "blankIndex": 1, "meaning": "結出的果實又多又大，豐收喜悅。", "options": ["天", "海", "泰", "果"]}, {"chars": ["五", "穀", "豐", "登"], "blankIndex": 2, "meaning": "稻麥等農作物全面大豐收，糧食充足。", "options": ["多", "豐", "萬", "致"]}, {"chars": ["風", "調", "雨", "暢"], "blankIndex": 2, "meaning": "氣候溫和適宜，四季安順。", "options": ["精", "大", "志", "雨"]}], [{"chars": ["瑞", "雪", "兆", "豐"], "blankIndex": 2, "meaning": "適時的大雪預兆著來年的大豐收。", "options": ["康", "兆", "氣", "花"]}, {"chars": ["錦", "繡", "前", "程"], "blankIndex": 1, "meaning": "前途如同錦緞般美好燦爛。", "options": ["情", "繡", "月", "樂"]}, {"chars": ["前", "程", "似", "錦"], "blankIndex": 2, "meaning": "前途如同錦繡一樣美好前程萬里。", "options": ["大", "似", "終", "溫"]}, {"chars": ["鵬", "程", "萬", "里"], "blankIndex": 1, "meaning": "大鵬鳥展翅飛向萬里長空，比喻前程遠大。", "options": ["正", "長", "人", "程"]}, {"chars": ["自", "強", "不", "息"], "blankIndex": 1, "meaning": "自覺努力向上，永不懈怠停步。", "options": ["春", "壽", "祥", "強"]}, {"chars": ["勇", "往", "直", "前"], "blankIndex": 1, "meaning": "勇敢堅定地一直往前走，不畏阻礙。", "options": ["和", "源", "春", "往"]}, {"chars": ["乘", "風", "破", "浪"], "blankIndex": 1, "meaning": "順著風勢衝破波浪，比喻克服困難前進。", "options": ["生", "公", "風", "終"]}, {"chars": ["披", "荊", "斬", "棘"], "blankIndex": 1, "meaning": "斬除荊棘雜草，比喻掃除前進道路上的艱難。", "options": ["荊", "沙", "清", "泰"]}, {"chars": ["再", "接", "再", "厲"], "blankIndex": 2, "meaning": "一次又一次不斷努力前進。", "options": ["再", "全", "穿", "愛"]}, {"chars": ["百", "折", "不", "撓"], "blankIndex": 2, "meaning": "受盡多次挫折也決不屈服動搖。", "options": ["致", "福", "不", "明"]}], [{"chars": ["堅", "定", "不", "移"], "blankIndex": 1, "meaning": "意志堅決，毫不動搖退縮。", "options": ["知", "志", "花", "定"]}, {"chars": ["一", "心", "一", "意"], "blankIndex": 2, "meaning": "心思全部集中在一件事上。", "options": ["光", "福", "一", "致"]}, {"chars": ["同", "心", "協", "力"], "blankIndex": 1, "meaning": "大家心連著心，共同出力完成事情。", "options": ["樂", "德", "心", "海"]}, {"chars": ["眾", "志", "成", "城"], "blankIndex": 1, "meaning": "大家萬眾一心，力量堅固如城牆。", "options": ["福", "壽", "氣", "志"]}, {"chars": ["齊", "心", "協", "力"], "blankIndex": 1, "meaning": "大家齊聚同心，共同協作使力。", "options": ["心", "人", "如", "久"]}, {"chars": ["萬", "眾", "一", "心"], "blankIndex": 2, "meaning": "千千萬萬人只有一個心願與目標。", "options": ["山", "光", "祥", "一"]}, {"chars": ["同", "甘", "共", "苦"], "blankIndex": 1, "meaning": "共同分享甘甜歡樂，共同分擔艱難困苦。", "options": ["甘", "有", "雨", "勝"]}, {"chars": ["休", "戚", "與", "共"], "blankIndex": 1, "meaning": "歡樂同憂慮都緊密聯繫在一起。", "options": ["戚", "清", "開", "光"]}, {"chars": ["風", "雨", "同", "舟"], "blankIndex": 2, "meaning": "在暴風雨中同乘一條船，同舟共濟。", "options": ["終", "多", "沙", "同"]}, {"chars": ["和", "衷", "共", "濟"], "blankIndex": 2, "meaning": "大家齊心協調，克服重重困難。", "options": ["開", "山", "共", "神"]}], [{"chars": ["互", "相", "扶", "持"], "blankIndex": 2, "meaning": "彼此相互照顧、支撐、幫助。", "options": ["知", "扶", "足", "心"]}, {"chars": ["相", "濡", "以", "沫"], "blankIndex": 2, "meaning": "在困境中以微薄之力相互支持撫慰。", "options": ["以", "喜", "善", "愛"]}, {"chars": ["和", "藹", "可", "親"], "blankIndex": 1, "meaning": "態度和善慈祥，非常令人容易親近。", "options": ["安", "知", "勝", "藹"]}, {"chars": ["平", "易", "近", "厚"], "blankIndex": 2, "meaning": "態度親切謙厚，敦厚實在。", "options": ["美", "近", "多", "知"]}, {"chars": ["大", "智", "若", "愚"], "blankIndex": 1, "meaning": "真正有智慧的人外表看起來謙和質樸。", "options": ["勝", "智", "意", "禮"]}, {"chars": ["寧", "靜", "致", "遠"], "blankIndex": 1, "meaning": "心情安寧平靜，才能眼光深遠，有所作為。", "options": ["地", "喜", "光", "靜"]}, {"chars": ["淡", "泊", "明", "志"], "blankIndex": 1, "meaning": "不追求名利富貴，生活簡樸以明確志向。", "options": ["坦", "足", "泊", "吉"]}, {"chars": ["海", "納", "百", "川"], "blankIndex": 1, "meaning": "大海能容納無數條河流，形容胸襟廣闊。", "options": ["玉", "納", "泰", "潔"]}, {"chars": ["壁", "立", "千", "仞"], "blankIndex": 1, "meaning": "懸崖絕壁高聳千仞，比喻剛正堅定。", "options": ["多", "清", "有", "立"]}, {"chars": ["剛", "柔", "並", "濟"], "blankIndex": 1, "meaning": "剛強與溫和相結合，處事恰到好處。", "options": ["清", "石", "柔", "久"]}], [{"chars": ["泰", "然", "處", "之"], "blankIndex": 1, "meaning": "遇到變故時鎮定從容，毫不慌張。", "options": ["終", "穿", "溫", "然"]}, {"chars": ["從", "容", "不", "迫"], "blankIndex": 1, "meaning": "鎮靜自如，一點也不慌張匆忙。", "options": ["潔", "公", "和", "容"]}, {"chars": ["處", "之", "泰", "然"], "blankIndex": 2, "meaning": "對待問題安詳鎮定，心平氣和。", "options": ["氣", "泰", "光", "萬"]}, {"chars": ["談", "笑", "風", "生"], "blankIndex": 2, "meaning": "說說笑笑，談話氣氛生動活潑。", "options": ["人", "風", "花", "喜"]}, {"chars": ["眉", "開", "眼", "笑"], "blankIndex": 2, "meaning": "形容笑容滿面，極為高興歡樂。", "options": ["近", "眼", "終", "雨"]}, {"chars": ["喜", "上", "眉", "梢"], "blankIndex": 2, "meaning": "喜悅之情洋溢在雙眉之上。", "options": ["萬", "安", "眉", "圓"]}, {"chars": ["欣", "喜", "若", "狂"], "blankIndex": 2, "meaning": "高興快樂得像要發狂一樣。", "options": ["若", "山", "心", "近"]}, {"chars": ["歡", "欣", "鼓", "舞"], "blankIndex": 2, "meaning": "大家歡樂振奮，深受鼓舞勉勵。", "options": ["情", "清", "鼓", "天"]}, {"chars": ["歌", "舞", "昇", "平"], "blankIndex": 2, "meaning": "唱歌跳舞，一片太平歡樂景象。", "options": ["康", "昇", "心", "坦"]}, {"chars": ["安", "居", "富", "裕"], "blankIndex": 2, "meaning": "居住安定，生活豐裕美滿。", "options": ["長", "近", "多", "富"]}], [{"chars": ["長", "泰", "久", "安"], "blankIndex": 1, "meaning": "長期太平安定，繁榮祥和。", "options": ["泰", "知", "山", "善"]}, {"chars": ["福", "壽", "康", "寧"], "blankIndex": 2, "meaning": "幸福、長壽、健康、寧靜全齊備。", "options": ["康", "情", "知", "公"]}, {"chars": ["益", "壽", "延", "年"], "blankIndex": 1, "meaning": "增益體魄，延年益壽。", "options": ["神", "壽", "步", "如"]}, {"chars": ["返", "老", "成", "童"], "blankIndex": 2, "meaning": "形容長者容光煥發，精神抖擻如孩童。", "options": ["成", "知", "情", "春"]}, {"chars": ["福", "澤", "綿", "長"], "blankIndex": 1, "meaning": "福氣恩澤綿延不斷，代代相傳。", "options": ["石", "澤", "多", "重"]}, {"chars": ["松", "柏", "常", "青"], "blankIndex": 1, "meaning": "松樹柏樹四季長青，比喻健康長壽。", "options": ["康", "明", "坦", "柏"]}, {"chars": ["松", "鶴", "延", "年"], "blankIndex": 1, "meaning": "松樹與仙鶴象徵健康、吉祥長壽。", "options": ["勝", "鶴", "如", "重"]}, {"chars": ["龜", "齡", "鶴", "算"], "blankIndex": 1, "meaning": "祝願人壽命如同神龜仙鶴一樣長久。", "options": ["齡", "心", "有", "明"]}, {"chars": ["富", "貴", "吉", "祥"], "blankIndex": 1, "meaning": "家境富足，生活平安吉利。", "options": ["人", "終", "穿", "貴"]}, {"chars": ["榮", "華", "富", "貴"], "blankIndex": 1, "meaning": "聲名顯赫，財富富足充足。", "options": ["生", "華", "福", "圓"]}], [{"chars": ["堆", "金", "積", "玉"], "blankIndex": 1, "meaning": "金銀珠寶堆積如山，財富極盛。", "options": ["知", "金", "花", "筆"]}, {"chars": ["招", "財", "進", "寶"], "blankIndex": 1, "meaning": "把財富同寶貝招進家中，非常吉利。", "options": ["多", "花", "海", "財"]}, {"chars": ["日", "進", "斗", "金"], "blankIndex": 1, "meaning": "每日收入豐厚，財源滾滾而來。", "options": ["穿", "安", "久", "進"]}, {"chars": ["財", "源", "廣", "進"], "blankIndex": 1, "meaning": "財富的來源非常廣泛通達。", "options": ["美", "源", "開", "平"]}, {"chars": ["大", "吉", "大", "利"], "blankIndex": 2, "meaning": "非常吉祥順利，百事如意。", "options": ["精", "少", "穿", "大"]}, {"chars": ["吉", "祥", "昌", "盛"], "blankIndex": 1, "meaning": "生活吉利，家業繁盛昌旺。", "options": ["開", "祥", "坦", "源"]}, {"chars": ["滿", "門", "吉", "慶"], "blankIndex": 2, "meaning": "全家門庭充滿吉祥慶賀的喜事。", "options": ["筆", "石", "春", "吉"]}, {"chars": ["合", "家", "歡", "樂"], "blankIndex": 1, "meaning": "全家老少團圓歡聚，其樂融融。", "options": ["知", "福", "天", "家"]}, {"chars": ["天", "倫", "之", "樂"], "blankIndex": 1, "meaning": "家庭成員聚在一起享受的親情溫馨與快樂。", "options": ["源", "美", "光", "倫"]}, {"chars": ["兒", "孫", "承", "歡"], "blankIndex": 2, "meaning": "兒女孫輩圍繞在長輩身邊盡孝送歡。", "options": ["神", "長", "情", "承"]}], [{"chars": ["慈", "愛", "有", "加"], "blankIndex": 1, "meaning": "長輩對晚輩疼愛關懷備至。", "options": ["足", "康", "穿", "愛"]}, {"chars": ["敬", "長", "愛", "幼"], "blankIndex": 1, "meaning": "尊敬老人，愛護孩童幼輩。", "options": ["多", "足", "長", "樂"]}, {"chars": ["長", "者", "安", "泰"], "blankIndex": 2, "meaning": "長輩身體康健安泰，生活平安順心。", "options": ["步", "安", "德", "意"]}, {"chars": ["問", "安", "視", "膳"], "blankIndex": 2, "meaning": "晚輩每天向長輩請安、照料飲食起居。", "options": ["善", "壽", "視", "溫"]}, {"chars": ["福", "祿", "雙", "全"], "blankIndex": 1, "meaning": "既有福氣又有祿位福報，各方面圓滿。", "options": ["溫", "如", "祿", "愛"]}, {"chars": ["德", "高", "望", "重"], "blankIndex": 1, "meaning": "品德崇高，聲望極大，受眾人敬重。", "options": ["和", "海", "高", "大"]}, {"chars": ["名", "揚", "四", "海"], "blankIndex": 1, "meaning": "名聲傳遍四方大海，遠近皆知。", "options": ["天", "揚", "精", "意"]}, {"chars": ["聲", "譽", "卓", "著"], "blankIndex": 2, "meaning": "名聲信譽極其傑出優秀。", "options": ["卓", "報", "萬", "足"]}, {"chars": ["萬", "里", "長", "青"], "blankIndex": 2, "meaning": "基業或健康長久保持青春活力。", "options": ["和", "安", "長", "尊"]}, {"chars": ["四", "季", "如", "春"], "blankIndex": 2, "meaning": "氣候溫和舒適，如同永遠在春天。", "options": ["如", "壽", "恩", "山"]}], [{"chars": ["春", "風", "化", "雨"], "blankIndex": 2, "meaning": "如同適時春風細雨，比喻教育化育之功。", "options": ["潔", "致", "長", "化"]}, {"chars": ["潤", "物", "無", "聲"], "blankIndex": 1, "meaning": "春雨悄悄滋潤萬物，比喻潛移默化的關愛。", "options": ["龍", "人", "石", "物"]}, {"chars": ["教", "學", "相", "長"], "blankIndex": 1, "meaning": "老師同學生在互動中共同提升進步。", "options": ["穿", "學", "重", "美"]}, {"chars": ["開", "卷", "有", "益"], "blankIndex": 2, "meaning": "打開書籍閱讀，一定會有所收穫。", "options": ["有", "潔", "足", "志"]}, {"chars": ["博", "古", "通", "今"], "blankIndex": 1, "meaning": "通曉古代歷史，明白現代事務。", "options": ["和", "重", "古", "氣"]}, {"chars": ["學", "無", "止", "境"], "blankIndex": 1, "meaning": "學習是沒有盡頭的，活到老學到老。", "options": ["祥", "海", "無", "長"]}, {"chars": ["溫", "故", "知", "新"], "blankIndex": 1, "meaning": "溫習舊知識，能從中得到新的體會啟發。", "options": ["清", "故", "意", "開"]}, {"chars": ["熟", "讀", "深", "思"], "blankIndex": 1, "meaning": "把書讀熟，並深入思考理解其中道理。", "options": ["泰", "報", "花", "讀"]}, {"chars": ["勤", "能", "補", "拙"], "blankIndex": 1, "meaning": "勤奮用功可以彌補先天資質的不足。", "options": ["長", "重", "山", "能"]}, {"chars": ["笨", "鳥", "先", "飛"], "blankIndex": 1, "meaning": "自己資質稍慢便早做準備、先行出發。", "options": ["鳥", "始", "如", "月"]}], [{"chars": ["有", "志", "竟", "成"], "blankIndex": 1, "meaning": "有堅定志向的人，終究會取得成功。", "options": ["溫", "潔", "終", "志"]}, {"chars": ["精", "益", "求", "精"], "blankIndex": 1, "meaning": "已經做得很好了，還力求更加精良優異。", "options": ["愛", "足", "近", "益"]}, {"chars": ["巧", "奪", "天", "工"], "blankIndex": 1, "meaning": "技藝精巧勝過天然造化。", "options": ["安", "勝", "奪", "全"]}, {"chars": ["鬼", "斧", "神", "工"], "blankIndex": 1, "meaning": "形容藝術或造化工藝神奇非凡。", "options": ["斧", "康", "公", "潔"]}, {"chars": ["爐", "火", "純", "青"], "blankIndex": 2, "meaning": "技藝或學問修煉到了最純熟的境地。", "options": ["純", "坦", "長", "地"]}, {"chars": ["出", "神", "入", "化"], "blankIndex": 1, "meaning": "技藝極其神妙高超，達到神化境界。", "options": ["穿", "善", "知", "神"]}, {"chars": ["登", "峰", "造", "極"], "blankIndex": 1, "meaning": "攀登到頂峰，達到最高境界。", "options": ["少", "玉", "風", "峰"]}, {"chars": ["無", "與", "倫", "比"], "blankIndex": 2, "meaning": "世間沒有任何事物可以與之相比。", "options": ["足", "坦", "倫", "吉"]}, {"chars": ["卓", "越", "非", "凡"], "blankIndex": 1, "meaning": "傑出超群，非同尋常。", "options": ["越", "石", "德", "沙"]}, {"chars": ["百", "步", "穿", "楊"], "blankIndex": 2, "meaning": "在百步之外能射中楊樹葉子，形容本領高超。", "options": ["如", "恩", "穿", "愛"]}], [{"chars": ["駕", "輕", "就", "熟"], "blankIndex": 1, "meaning": "駕著輕車走熟路，做事經驗豐富、得心應手。", "options": ["輕", "意", "大", "步"]}, {"chars": ["得", "心", "應", "手"], "blankIndex": 1, "meaning": "心裏怎麼想，手裏就能怎麼做，技藝嫻熟。", "options": ["地", "心", "報", "潔"]}, {"chars": ["游", "刃", "有", "餘"], "blankIndex": 2, "meaning": "刀刃在骨節間自由遊走，比喻處事輕鬆自如。", "options": ["心", "有", "清", "全"]}, {"chars": ["應", "付", "自", "如"], "blankIndex": 2, "meaning": "處理事情從容不迫，毫無壓力。", "options": ["自", "龍", "志", "雨"]}, {"chars": ["神", "機", "妙", "筆"], "blankIndex": 2, "meaning": "形容書法繪畫或文章寫作極其生動傳神。", "options": ["樂", "妙", "祥", "泰"]}, {"chars": ["畫", "龍", "點", "睛"], "blankIndex": 2, "meaning": "在最關鍵處點上幾筆，使全篇生動傳神。", "options": ["點", "光", "大", "萬"]}, {"chars": ["點", "石", "成", "金"], "blankIndex": 2, "meaning": "把頑石點化成黃金，比喻文字或技藝的神奇。", "options": ["少", "海", "愛", "成"]}, {"chars": ["妙", "手", "回", "春"], "blankIndex": 1, "meaning": "稱讚醫術高明，能讓重病之人康復回春。", "options": ["和", "公", "手", "福"]}, {"chars": ["仁", "心", "仁", "術"], "blankIndex": 1, "meaning": "醫者有慈悲仁愛之心，又有精湛醫術。", "options": ["山", "月", "泰", "心"]}, {"chars": ["懸", "壺", "濟", "世"], "blankIndex": 1, "meaning": "行醫救人，造福世間百姓。", "options": ["正", "壺", "源", "風"]}], [{"chars": ["德", "藝", "雙", "馨"], "blankIndex": 1, "meaning": "品德好，藝術技藝也極為高超。", "options": ["美", "藝", "山", "善"]}, {"chars": ["廣", "結", "善", "緣"], "blankIndex": 2, "meaning": "多同人友好結交，廣積善意人脈。", "options": ["花", "和", "吉", "善"]}, {"chars": ["待", "人", "以", "誠"], "blankIndex": 2, "meaning": "對待身邊所有人都真誠實意。", "options": ["長", "禮", "以", "沙"]}, {"chars": ["以", "德", "服", "人"], "blankIndex": 1, "meaning": "依靠優良品德使他人心悅誠服。", "options": ["萬", "德", "潔", "生"]}, {"chars": ["言", "行", "一", "致"], "blankIndex": 1, "meaning": "說話與實際行動完全一致，表裏如一。", "options": ["筆", "康", "行", "泰"]}, {"chars": ["推", "心", "置", "腹"], "blankIndex": 2, "meaning": "把真心交給朋友，形容真誠相待。", "options": ["置", "知", "海", "玉"]}, {"chars": ["肝", "膽", "相", "照"], "blankIndex": 1, "meaning": "以真心相見，彼此坦白忠誠。", "options": ["始", "膽", "意", "康"]}, {"chars": ["同", "舟", "共", "濟"], "blankIndex": 2, "meaning": "風雨同舟，共同跨過一切難關。", "options": ["福", "平", "共", "康"]}, {"chars": ["志", "同", "道", "合"], "blankIndex": 1, "meaning": "志向一致，志趣相投的好朋友。", "options": ["康", "圓", "同", "月"]}, {"chars": ["莫", "逆", "之", "交"], "blankIndex": 1, "meaning": "感情融洽，彼此毫無違逆的知心摯友。", "options": ["雨", "逆", "終", "明"]}], [{"chars": ["心", "有", "靈", "犀"], "blankIndex": 2, "meaning": "彼此心靈相通，不用說話也心領神會。", "options": ["和", "恩", "意", "靈"]}, {"chars": ["千", "里", "迢", "迢"], "blankIndex": 1, "meaning": "路途極其遙遠漫長。", "options": ["愛", "泰", "里", "神"]}, {"chars": ["風", "塵", "僕", "僕"], "blankIndex": 1, "meaning": "形容長途跋涉旅程奔波勞累。", "options": ["重", "神", "心", "塵"]}, {"chars": ["安", "然", "無", "恙"], "blankIndex": 2, "meaning": "平平安安，沒有受到任何損害或傷害。", "options": ["精", "和", "無", "潔"]}, {"chars": ["平", "安", "無", "事"], "blankIndex": 2, "meaning": "平平安安，沒有發生任何波折。", "options": ["山", "無", "春", "圓"]}, {"chars": ["順", "風", "順", "水"], "blankIndex": 1, "meaning": "行船一路順風順水，比喻事事如意。", "options": ["風", "如", "始", "生"]}, {"chars": ["康", "泰", "祥", "和"], "blankIndex": 1, "meaning": "身體健康安泰，氣氛祥和幸福。", "options": ["安", "正", "天", "泰"]}, {"chars": ["歡", "聲", "笑", "語"], "blankIndex": 2, "meaning": "歡快的笑聲同話語充滿周圍。", "options": ["光", "終", "大", "笑"]}, {"chars": ["笑", "逐", "顏", "開"], "blankIndex": 1, "meaning": "笑容舒展，滿臉都是高興的笑容。", "options": ["逐", "泰", "愛", "喜"]}, {"chars": ["眉", "飛", "色", "舞"], "blankIndex": 1, "meaning": "神情高興得意，眉眼生動活躍。", "options": ["飛", "恩", "安", "風"]}], [{"chars": ["樂", "在", "其", "中"], "blankIndex": 1, "meaning": "在所做的事情中體會到無限樂趣。", "options": ["意", "萬", "在", "喜"]}, {"chars": ["自", "得", "其", "樂"], "blankIndex": 2, "meaning": "自己能從生活中找到快樂並自得自樂。", "options": ["有", "坦", "其", "喜"]}, {"chars": ["心", "滿", "意", "足"], "blankIndex": 1, "meaning": "心裏非常滿意，感到很知足。", "options": ["壽", "坦", "滿", "人"]}, {"chars": ["無", "憂", "無", "慮"], "blankIndex": 1, "meaning": "沒有任何煩惱憂愁，心情自由輕鬆。", "options": ["少", "神", "憂", "樂"]}, {"chars": ["舒", "心", "順", "氣"], "blankIndex": 1, "meaning": "心情舒適順暢，全身通泰舒坦。", "options": ["春", "坦", "心", "清"]}, {"chars": ["心", "曠", "神", "怡"], "blankIndex": 2, "meaning": "心胸開朗，精神愉快舒暢。", "options": ["意", "神", "龍", "步"]}, {"chars": ["神", "清", "氣", "爽"], "blankIndex": 1, "meaning": "神志清新，氣息爽快，精神奕奕。", "options": ["如", "平", "玉", "清"]}, {"chars": ["耳", "聰", "眼", "明"], "blankIndex": 1, "meaning": "聽得真切，看得明白，頭腦清醒。", "options": ["天", "聰", "月", "尊"]}, {"chars": ["精", "神", "煥", "發"], "blankIndex": 2, "meaning": "精神振奮，容光煥發有神采。", "options": ["壽", "愛", "萬", "煥"]}, {"chars": ["容", "光", "煥", "發"], "blankIndex": 1, "meaning": "臉上充滿健康光彩，精神極佳。", "options": ["尊", "和", "潔", "光"]}]];
+
+    let currentSetIdx = 0;
+    let currentIdiomInSet = 0;
+
+    // 從 localStorage 恢復上次玩到的組別
+    try {
+      const savedSet = localStorage.getItem('grandma_idiom_set');
+      if (savedSet !== null) {
+        currentSetIdx = parseInt(savedSet, 10) || 0;
+        if (currentSetIdx >= idiomSets.length) currentSetIdx = 0;
+      }
+    } catch (e) {}
+
+    /* 音效合成 (Web Audio API) */
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     function playChime(success = true) {
       if (audioCtx.state === 'suspended') audioCtx.resume();
       const now = audioCtx.currentTime;
       if (success) {
+        // 和諧大三和弦 (C5 -> E5 -> G5 -> C6)
         [523.25, 659.25, 783.99, 1046.50].forEach((freq, idx) => {
           const osc = audioCtx.createOscillator();
           const gain = audioCtx.createGain();
@@ -438,6 +579,31 @@
       }
     }
 
+    function playFanfare() {
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      const now = audioCtx.currentTime;
+      // 凱旋號角長音 (G4 -> C5 -> E5 -> G5 -> C6)
+      const notes = [
+        { f: 392.00, t: 0.0, d: 0.18 },
+        { f: 523.25, t: 0.18, d: 0.18 },
+        { f: 659.25, t: 0.36, d: 0.18 },
+        { f: 783.99, t: 0.54, d: 0.35 },
+        { f: 1046.50, t: 0.90, d: 0.70 }
+      ];
+      notes.forEach(n => {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(n.f, now + n.t);
+        gain.gain.setValueAtTime(0.25, now + n.t);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + n.t + n.d);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(now + n.t);
+        osc.stop(now + n.t + n.d);
+      });
+    }
+
     function switchTab(tab) {
       document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
       document.querySelectorAll('.game-container').forEach(c => c.classList.remove('active'));
@@ -450,45 +616,40 @@
       }
     }
 
-    /* 成語資料庫 */
-    const idioms = [
-      {
-        chars: ['龍', '精', '虎', '猛'],
-        blankIndex: 1,
-        meaning: '比喻精力充沛，神采飛揚，身體非常健康健壯。',
-        options: ['精', '心', '生', '真']
-      },
-      {
-        chars: ['身', '體', '健', '康'],
-        blankIndex: 2,
-        meaning: '祝願生活平安無病無痛，身體強健安泰。',
-        options: ['健', '大', '樂', '安']
-      },
-      {
-        chars: ['出', '入', '平', '安'],
-        blankIndex: 3,
-        meaning: '出門同返屋企都順順利利，平平安安。',
-        options: ['安', '康', '定', '祥']
-      },
-      {
-        chars: ['開', '開', '心', '心'],
-        blankIndex: 0,
-        meaning: '心情舒暢愉快，每日滿臉笑容。',
-        options: ['開', '放', '歡', '喜']
-      },
-      {
-        chars: ['萬', '事', '勝', '意'],
-        blankIndex: 2,
-        meaning: '所有事情都比預期更加順心滿意。',
-        options: ['勝', '如', '稱', '吉']
+    /* 初始化組別下拉清單 */
+    function initSetDropdown() {
+      const select = document.getElementById('set-dropdown');
+      select.innerHTML = '';
+      for (let i = 0; i < idiomSets.length; i++) {
+        const opt = document.createElement('option');
+        opt.value = i;
+        opt.innerText = `第 ${i + 1} 組 (題 ${i * 10 + 1}-${i * 10 + 10})`;
+        if (i === currentSetIdx) opt.selected = true;
+        select.appendChild(opt);
       }
-    ];
+    }
 
-    let currentIdiomIdx = 0;
+    function onSelectSet(idx) {
+      currentSetIdx = parseInt(idx, 10);
+      currentIdiomInSet = 0;
+      saveProgress();
+      renderIdiom();
+    }
 
+    function saveProgress() {
+      try {
+        localStorage.setItem('grandma_idiom_set', currentSetIdx);
+      } catch (e) {}
+    }
+
+    /* 渲染當前成語題目 */
     function renderIdiom() {
-      const cur = idioms[currentIdiomIdx];
-      document.getElementById('idiom-round-info').innerText = `第 ${currentIdiomIdx + 1} / ${idioms.length} 題`;
+      const curSet = idiomSets[currentSetIdx];
+      const cur = curSet[currentIdiomInSet];
+
+      // 更新進度文字與下拉選單
+      document.getElementById('idiom-progress-label').innerText = `第 ${currentSetIdx + 1} 組 ・ 第 ${currentIdiomInSet + 1} / 10 題`;
+      document.getElementById('set-dropdown').value = currentSetIdx;
       document.getElementById('idiom-meaning').innerText = '💡 提示：' + cur.meaning;
 
       const displayBox = document.getElementById('idiom-display');
@@ -513,39 +674,109 @@
     }
 
     function chooseOption(char) {
-      const cur = idioms[currentIdiomIdx];
+      const curSet = idiomSets[currentSetIdx];
+      const cur = curSet[currentIdiomInSet];
       const targetChar = cur.chars[cur.blankIndex];
       const targetBox = document.getElementById(`char-pos-${cur.blankIndex}`);
 
       if (char === targetChar) {
         targetBox.innerText = char;
         targetBox.style.color = 'var(--secondary)';
-        playChime(true);
-        showFeedback("好叻呀！🎉", `答啱喇！「${cur.chars.join('')}」！`);
+
+        // 判斷是否為本組最後一題 (第 10 題)
+        if (currentIdiomInSet === 9) {
+          playFanfare();
+          setTimeout(() => {
+            showSetCompletionPopup();
+          }, 500);
+        } else {
+          playChime(true);
+          showFeedback("好叻呀！🎉", `答啱喇！「${cur.chars.join('')}」！`, true);
+        }
       } else {
         playChime(false);
-        showFeedback("差少少，再試試！🌸", `選了「${char}」，再看看提示諗一諗！`);
+        showFeedback("差少少，再試試！🌸", `選了「${char}」，睇睇提示再諗一諗！`, false);
       }
     }
 
     function prevIdiom() {
-      if (currentIdiomIdx > 0) {
-        currentIdiomIdx--;
+      if (currentIdiomInSet > 0) {
+        currentIdiomInSet--;
         renderIdiom();
       }
     }
 
     function nextIdiom() {
-      if (currentIdiomIdx < idioms.length - 1) {
-        currentIdiomIdx++;
+      if (currentIdiomInSet < 9) {
+        currentIdiomInSet++;
         renderIdiom();
       } else {
-        currentIdiomIdx = 0;
-        renderIdiom();
+        showSetCompletionPopup();
       }
     }
 
-    /* 6x6 數獨資料 */
+    /* 單題回饋彈窗 */
+    let shouldAdvanceOnClose = false;
+    function showFeedback(title, text, isCorrect) {
+      document.getElementById('fb-title').innerText = title;
+      document.getElementById('fb-text').innerText = text;
+      shouldAdvanceOnClose = isCorrect;
+      const btn = document.getElementById('fb-btn');
+      btn.innerText = isCorrect ? "下一題 ⏭️" : "再試試 🌸";
+      document.getElementById('feedback-modal').classList.add('show');
+    }
+
+    function closeFeedback() {
+      document.getElementById('feedback-modal').classList.remove('show');
+      if (shouldAdvanceOnClose) {
+        if (currentIdiomInSet < 9) {
+          currentIdiomInSet++;
+          renderIdiom();
+        }
+      }
+    }
+
+    /* 一組完成 POPUP 邏輯 */
+    function showSetCompletionPopup() {
+      document.getElementById('set-popup-title').innerText = `太叻喇！第 ${currentSetIdx + 1} 組完成！🎉`;
+      const nextIdx = currentSetIdx + 1;
+      const nextBtn = document.getElementById('next-set-btn');
+
+      if (nextIdx < idiomSets.length) {
+        document.getElementById('set-popup-body').innerText = 
+          `婆婆真係好精明，第 ${currentSetIdx + 1} 組 10 題成語全部順利過關！每日動動腦，越玩越精神！`;
+        nextBtn.innerText = `挑戰第 ${nextIdx + 1} 組 ➡️`;
+        nextBtn.style.display = 'block';
+      } else {
+        document.getElementById('set-popup-body').innerText = 
+          `恭喜婆婆！300 題成語全部大功告成！頭腦非常清晰靈活！`;
+        nextBtn.innerText = `從第 1 組重新挑戰 🔄`;
+        nextBtn.style.display = 'block';
+      }
+
+      document.getElementById('set-popup').classList.add('show');
+    }
+
+    function goToNextSet() {
+      document.getElementById('set-popup').classList.remove('show');
+      if (currentSetIdx < idiomSets.length - 1) {
+        currentSetIdx++;
+      } else {
+        currentSetIdx = 0;
+      }
+      currentIdiomInSet = 0;
+      saveProgress();
+      renderIdiom();
+      playChime(true);
+    }
+
+    function replayCurrentSet() {
+      document.getElementById('set-popup').classList.remove('show');
+      currentIdiomInSet = 0;
+      renderIdiom();
+    }
+
+    /* --- 6x6 數獨邏輯 --- */
     const initialPuzzle = [
       [6, 3, 0, 0, 0, 0],
       [4, 1, 6, 0, 0, 0],
@@ -622,25 +853,17 @@
       }
 
       if (isCorrect && isComplete) {
-        playChime(true);
-        showFeedback("大功告成！🏆", "婆婆好厲害，成盤數獨完成得好工整！");
+        playFanfare();
+        showFeedback("大功告成！🏆", "婆婆好厲害，成盤數獨完成得好工整！", false);
       } else if (!isComplete) {
-        showFeedback("仲差少少空格！🌸", "仲有空格未填，慢慢搵唔使急！");
+        showFeedback("仲差少少空格！🌸", "仲有空格未填，慢慢填唔使急！", false);
       } else {
-        showFeedback("有一兩格填錯咗！💡", "留意睇下有無行或列數字重複，再改一改！");
+        showFeedback("有一兩格填錯咗！💡", "留意睇下有無行或列數字重複，再改一改！", false);
       }
     }
 
-    function showFeedback(title, text) {
-      document.getElementById('fb-title').innerText = title;
-      document.getElementById('fb-text').innerText = text;
-      document.getElementById('feedback-modal').classList.add('show');
-    }
-
-    function closeFeedback() {
-      document.getElementById('feedback-modal').classList.remove('show');
-    }
-
+    // 初始化載入
+    initSetDropdown();
     renderIdiom();
     renderSudoku();
   </script>
