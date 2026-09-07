@@ -1,13 +1,16 @@
+porporgames_index_v3.html
+100%
 <!DOCTYPE html>
+
 <html lang="zh-HK">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="婆婆健腦樂園">
-  <title>婆婆健腦樂園 - 益智小遊戲</title>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
+<meta content="婆婆健腦樂園" name="apple-mobile-web-app-title"/>
+<title>婆婆健腦樂園 - 益智小遊戲</title>
+<style>
     :root {
       --bg-color: #F7F4EB;
       --card-bg: #FFFFFF;
@@ -455,705 +458,116 @@
   </style>
 </head>
 <body>
-
-  <header>
-    <h1>🌸 婆婆益智樂園 🌸</h1>
-    <div class="subtitle">每日動動腦，越玩越精神！</div>
-  </header>
-
-  <div class="nav-tabs">
-    <button class="tab-btn active" onclick="switchTab('idiom')">📖 成語猜猜</button>
-    <button class="tab-btn" onclick="switchTab('sudoku')">🔢 簡易數獨 (1000題)</button>
-  </div>
-
-  <!-- 成語猜猜 -->
-  <div id="idiom-game" class="game-container active">
-    <div class="top-bar">
-      <div class="progress-title" id="idiom-progress-label">載入題目中...</div>
-      <div class="select-wrapper">
-        <label for="set-dropdown" style="font-size: 18px; color: #666;">換組：</label>
-        <select id="set-dropdown" class="select-input" onchange="onSelectSet(this.value)"></select>
-      </div>
-    </div>
-
-    <div class="idiom-question-box">
-      <div class="idiom-chars" id="idiom-display"></div>
-      <div class="idiom-hint-text" id="idiom-meaning">釋義載入中...</div>
-    </div>
-
-    <div class="options-grid" id="idiom-options"></div>
-
-    <div class="controls">
-      <button class="action-btn alt" onclick="prevIdiom()">⏮️ 上一題</button>
-      <button class="action-btn" onclick="nextIdiom()">跳過 / 下一題 ⏭️</button>
-    </div>
-    <div class="source-tag">題庫來源：chinesewords.xml</div>
-  </div>
-
-  <!-- 簡易數獨 -->
-  <div id="sudoku-game" class="game-container">
-    <div class="top-bar">
-      <div class="progress-title" id="sudoku-progress-label">第 1 / 1000 題</div>
-      <div class="select-wrapper">
-        <label for="sudoku-select" style="font-size: 18px; color: #666;">跳題：</label>
-        <select id="sudoku-select" class="select-input" onchange="onSelectSudoku(this.value)"></select>
-      </div>
-    </div>
-    
-    <div style="font-size: 22px; color: #555; margin-bottom: 14px; text-align: center;">
+<header>
+<h1>🌸 婆婆益智樂園 🌸</h1>
+<div class="subtitle">每日動動腦，越玩越精神！</div>
+</header>
+<div class="nav-tabs">
+<button class="tab-btn active" onclick="switchTab('idiom')">📖 成語猜猜</button>
+<button class="tab-btn" onclick="switchTab('sudoku')">🔢 簡易數獨 (1000題)</button>
+</div>
+<!-- 成語猜猜 -->
+<div class="game-container active" id="idiom-game">
+<div class="top-bar">
+<div class="progress-title" id="idiom-progress-label">載入題目中...</div>
+<div class="select-wrapper">
+<label for="set-dropdown" style="font-size: 18px; color: #666;">換組：</label>
+<select class="select-input" id="set-dropdown" onchange="onSelectSet(this.value)"></select>
+</div>
+</div>
+<div class="idiom-question-box">
+<div class="idiom-chars" id="idiom-display"></div>
+<div class="idiom-hint-text" id="idiom-meaning">釋義載入中...</div>
+</div>
+<div class="options-grid" id="idiom-options"></div>
+<div class="controls">
+<button class="action-btn alt" onclick="prevIdiom()">⏮️ 上一題</button>
+<button class="action-btn" onclick="nextIdiom()">跳過 / 下一題 ⏭️</button>
+</div>
+<div class="source-tag">題庫來源：chinesewords.xml</div>
+</div>
+<!-- 簡易數獨 -->
+<div class="game-container" id="sudoku-game">
+<div class="top-bar">
+<div class="progress-title" id="sudoku-progress-label">第 1 / 1000 題</div>
+<div class="select-wrapper">
+<label for="sudoku-select" style="font-size: 18px; color: #666;">跳題：</label>
+<select class="select-input" id="sudoku-select" onchange="onSelectSudoku(this.value)"></select>
+</div>
+</div>
+<div style="font-size: 22px; color: #555; margin-bottom: 14px; text-align: center;">
       每行、每列同每個 2×3 六宮格，填入 1 至 6 數字！
     </div>
-    
-    <div class="sudoku-board-wrapper">
-      <div class="sudoku-grid" id="sudoku-grid"></div>
-      
-      <div class="sudoku-keypad">
-        <button class="key-btn" onclick="inputNumber(1)">1</button>
-        <button class="key-btn" onclick="inputNumber(2)">2</button>
-        <button class="key-btn" onclick="inputNumber(3)">3</button>
-        <button class="key-btn" onclick="inputNumber(4)">4</button>
-        <button class="key-btn" onclick="inputNumber(5)">5</button>
-        <button class="key-btn" onclick="inputNumber(6)">6</button>
-      </div>
-      
-      <div class="controls">
-        <button class="key-btn erase-btn" style="flex: 1; min-width: 100px; height: 64px;" onclick="inputNumber(0)">擦除 ⌫</button>
-        <button class="action-btn alt" style="flex: 1; height: 64px;" onclick="resetSudoku()">重設呢題 🔄</button>
-      </div>
-
-      <div class="controls" style="margin-top: 10px;">
-        <button class="action-btn alt" style="height: 64px;" onclick="prevSudoku()">◀️ 上一題</button>
-        <button class="action-btn rand" style="height: 64px;" onclick="randomSudoku()">隨機抽一題 🎲</button>
-        <button class="action-btn alt" style="height: 64px;" onclick="nextSudoku()">下一題 ▶️</button>
-      </div>
-    </div>
-    <div class="source-tag">題庫來源：sudokusource.xml</div>
-  </div>
-
-  <!-- 單題回饋彈窗 (答啱直接點「好！下一題 ➡️」前往下一題，不需多餘操作) -->
-  <div class="feedback-banner" id="feedback-modal">
-    <div class="feedback-title" id="fb-title">好叻呀！🎉</div>
-    <div class="feedback-body" id="fb-text">婆婆答啱喇！</div>
-    <button class="action-btn" style="height: 72px; font-size: 28px;" id="fb-btn" onclick="onConfirmFeedback()">
+<div class="sudoku-board-wrapper">
+<div class="sudoku-grid" id="sudoku-grid"></div>
+<div class="sudoku-keypad">
+<button class="key-btn" onclick="inputNumber(1)">1</button>
+<button class="key-btn" onclick="inputNumber(2)">2</button>
+<button class="key-btn" onclick="inputNumber(3)">3</button>
+<button class="key-btn" onclick="inputNumber(4)">4</button>
+<button class="key-btn" onclick="inputNumber(5)">5</button>
+<button class="key-btn" onclick="inputNumber(6)">6</button>
+</div>
+<div class="controls">
+<button class="key-btn erase-btn" onclick="inputNumber(0)" style="flex: 1; min-width: 100px; height: 64px;">擦除 ⌫</button>
+<button class="action-btn alt" onclick="resetSudoku()" style="flex: 1; height: 64px;">重設呢題 🔄</button>
+</div>
+<div class="controls" style="margin-top: 10px;">
+<button class="action-btn alt" onclick="prevSudoku()" style="height: 64px;">◀️ 上一題</button>
+<button class="action-btn rand" onclick="randomSudoku()" style="height: 64px;">隨機抽一題 🎲</button>
+<button class="action-btn alt" onclick="nextSudoku()" style="height: 64px;">下一題 ▶️</button>
+</div>
+</div>
+<div class="source-tag">題庫來源：sudokusource.xml</div>
+</div>
+<!-- 單題回饋彈窗 (答啱直接點「好！下一題 ➡️」前往下一題，不需多餘操作) -->
+<div class="feedback-banner" id="feedback-modal">
+<div class="feedback-title" id="fb-title">好叻呀！🎉</div>
+<div class="feedback-body" id="fb-text">婆婆答啱喇！</div>
+<button class="action-btn" id="fb-btn" onclick="onConfirmFeedback()" style="height: 72px; font-size: 28px;">
       好！做下一題 ➡️
     </button>
-  </div>
-
-  <!-- 10題整組完成慶祝彈窗 (SET POPUP) -->
-  <div class="set-popup-overlay" id="set-popup">
-    <div class="set-popup-card">
-      <div class="set-popup-icon">🏆✨🎉</div>
-      <div class="set-popup-title" id="set-popup-title">太叻喇！第 1 組完成！</div>
-      <div class="set-popup-body" id="set-popup-body">
+</div>
+<!-- 10題整組完成慶祝彈窗 (SET POPUP) -->
+<div class="set-popup-overlay" id="set-popup">
+<div class="set-popup-card">
+<div class="set-popup-icon">🏆✨🎉</div>
+<div class="set-popup-title" id="set-popup-title">太叻喇！第 1 組完成！</div>
+<div class="set-popup-body" id="set-popup-body">
         婆婆真係好精明，呢組 10 題成語全部順利過關！每日動動腦，越玩越精神！
       </div>
-      <div class="set-popup-btns">
-        <button class="action-btn" style="height: 76px; font-size: 28px;" id="next-set-btn" onclick="goToNextSet()">
+<div class="set-popup-btns">
+<button class="action-btn" id="next-set-btn" onclick="goToNextSet()" style="height: 76px; font-size: 28px;">
           挑戰下一組 (第 2 組) ➡️
         </button>
-        <button class="action-btn alt" style="height: 60px; font-size: 22px;" onclick="replayCurrentSet()">
+<button class="action-btn alt" onclick="replayCurrentSet()" style="height: 60px; font-size: 22px;">
           重溫呢一組 🔄
         </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- 數獨全對完成慶祝彈窗 (SUDOKU VICTORY POPUP) -->
-  <div class="set-popup-overlay" id="sudoku-victory-popup">
-    <div class="set-popup-card">
-      <div class="set-popup-icon">🏆✨🎉</div>
-      <div class="set-popup-title" id="sudoku-victory-title">太叻喇！數獨全部答啱！</div>
-      <div class="set-popup-body" id="sudoku-victory-body">
+</div>
+</div>
+</div>
+<!-- 數獨全對完成慶祝彈窗 (SUDOKU VICTORY POPUP) -->
+<div class="set-popup-overlay" id="sudoku-victory-popup">
+<div class="set-popup-card">
+<div class="set-popup-icon">🏆✨🎉</div>
+<div class="set-popup-title" id="sudoku-victory-title">太叻喇！數獨全部答啱！</div>
+<div class="set-popup-body" id="sudoku-victory-body">
         婆婆好犀利呀！成盤 6×6 數獨全部填啱晒，頭腦好精明！現在為您前進去下一題！
       </div>
-      <div class="set-popup-btns">
-        <button class="action-btn" style="height: 76px; font-size: 28px;" onclick="onSudokuGoNext()">
+<div class="set-popup-btns">
+<button class="action-btn" onclick="onSudokuGoNext()" style="height: 76px; font-size: 28px;">
           做下一題 ➡️
         </button>
-        <button class="action-btn rand" style="height: 64px; font-size: 24px;" onclick="onSudokuGoRandom()">
+<button class="action-btn rand" onclick="onSudokuGoRandom()" style="height: 64px; font-size: 24px;">
           隨機抽新題目 🎲
         </button>
-      </div>
-    </div>
-  </div>
+</div>
+</div>
+</div>
 
-  <script>
-    /* 音效合成 (Web Audio API) */
-    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    function playChime(success = true) {
-      if (audioCtx.state === 'suspended') audioCtx.resume();
-      const now = audioCtx.currentTime;
-      if (success) {
-        [523.25, 659.25, 783.99, 1046.50].forEach((freq, idx) => {
-          const osc = audioCtx.createOscillator();
-          const gain = audioCtx.createGain();
-          osc.type = 'triangle';
-          osc.frequency.setValueAtTime(freq, now + idx * 0.1);
-          gain.gain.setValueAtTime(0.18, now + idx * 0.1);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.1 + 0.5);
-          osc.connect(gain);
-          gain.connect(audioCtx.destination);
-          osc.start(now + idx * 0.1);
-          osc.stop(now + idx * 0.1 + 0.5);
-        });
-      } else {
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(330, now);
-        osc.frequency.setValueAtTime(261, now + 0.15);
-        gain.gain.setValueAtTime(0.15, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-        osc.start(now);
-        osc.stop(now + 0.4);
-      }
-    }
+<script src="common.js"></script>
+<script src="idiom.js"></script>
+<script src="sudoku.js"></script>
 
-    function playFanfare() {
-      if (audioCtx.state === 'suspended') audioCtx.resume();
-      const now = audioCtx.currentTime;
-      const notes = [
-        { f: 392.00, t: 0.0, d: 0.18 },
-        { f: 523.25, t: 0.18, d: 0.18 },
-        { f: 659.25, t: 0.36, d: 0.18 },
-        { f: 783.99, t: 0.54, d: 0.35 },
-        { f: 1046.50, t: 0.90, d: 0.70 }
-      ];
-      notes.forEach(n => {
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        osc.type = 'triangle';
-        osc.frequency.setValueAtTime(n.f, now + n.t);
-        gain.gain.setValueAtTime(0.25, now + n.t);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + n.t + n.d);
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-        osc.start(now + n.t);
-        osc.stop(now + n.t + n.d);
-      });
-    }
-
-    function switchTab(tab) {
-      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-      document.querySelectorAll('.game-container').forEach(c => c.classList.remove('active'));
-      if (tab === 'idiom') {
-        document.querySelector('.tab-btn:nth-child(1)').classList.add('active');
-        document.getElementById('idiom-game').classList.add('active');
-      } else {
-        document.querySelector('.tab-btn:nth-child(2)').classList.add('active');
-        document.getElementById('sudoku-game').classList.add('active');
-      }
-    }
-
-    /* ========================================================
-       1. 成語猜猜模組 (載入自 chinesewords.xml)
-       ======================================================== */
-    let idiomSets = [];
-    let currentSetIdx = 0;
-    let currentIdiomInSet = 0;
-    let isLastAnswerCorrect = false;
-
-    // 內建備用題庫 (若未連伺服器或本地file://無法fetch時自動啟用)
-    const fallbackIdioms = [
-      [
-        { chars: ['龍', '精', '虎', '猛'], blankIndex: 1, meaning: '比喻精力充沛，神采飛揚，身體健壯。', options: ['精', '心', '生', '真'] },
-        { chars: ['身', '體', '健', '康'], blankIndex: 2, meaning: '祝願生活平安無病無痛，身體強健安泰。', options: ['健', '大', '樂', '安'] },
-        { chars: ['出', '入', '平', '安'], blankIndex: 3, meaning: '出門同返屋企都平平安安，順順利利。', options: ['安', '康', '定', '祥'] },
-        { chars: ['開', '開', '心', '心'], blankIndex: 0, meaning: '心情舒暢愉快，每日滿臉笑容。', options: ['開', '放', '歡', '喜'] },
-        { chars: ['萬', '事', '勝', '意'], blankIndex: 2, meaning: '所有事情都稱心如意，比想像中更好。', options: ['勝', '如', '稱', '吉'] },
-        { chars: ['長', '命', '百', '歲'], blankIndex: 1, meaning: '祝願長者長壽健康，福壽雙全。', options: ['命', '生', '年', '樂'] },
-        { chars: ['福', '如', '東', '海'], blankIndex: 0, meaning: '比喻福氣如同東海之水一樣浩大無窮。', options: ['福', '壽', '吉', '春'] },
-        { chars: ['壽', '比', '南', '山'], blankIndex: 0, meaning: '祝願壽命如同南山一樣長久不衰。', options: ['壽', '福', '山', '天'] },
-        { chars: ['吉', '祥', '如', '意'], blankIndex: 1, meaning: '吉祥幸運，萬事都能符合心意。', options: ['祥', '星', '慶', '順'] },
-        { chars: ['四', '季', '平', '安'], blankIndex: 2, meaning: '一年四季春夏秋冬都平平安安。', options: ['平', '長', '大', '順'] }
-      ]
-    ];
-
-    async function fetchIdiomsXML() {
-      try {
-        const res = await fetch('chinesewords.xml');
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        const xmlText = await res.text();
-        const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(xmlText, 'text/xml');
-        const setNodes = xmlDoc.getElementsByTagName('set');
-        
-        const loadedSets = [];
-        for (let s = 0; s < setNodes.length; s++) {
-          const qNodes = setNodes[s].getElementsByTagName('question');
-          const setList = [];
-          for (let q = 0; q < qNodes.length; q++) {
-            const text = qNodes[q].getElementsByTagName('text')[0]?.textContent || '';
-            const blankIndex = parseInt(qNodes[q].getElementsByTagName('blankIndex')[0]?.textContent || '0', 10);
-            const meaning = qNodes[q].getElementsByTagName('meaning')[0]?.textContent || '';
-            const optNodes = qNodes[q].getElementsByTagName('option');
-            const options = [];
-            for (let o = 0; o < optNodes.length; o++) {
-              options.push(optNodes[o].textContent.trim());
-            }
-            setList.push({
-              chars: text.split(''),
-              blankIndex: blankIndex,
-              meaning: meaning,
-              options: options
-            });
-          }
-          if (setList.length > 0) loadedSets.push(setList);
-        }
-
-        if (loadedSets.length > 0) {
-          idiomSets = loadedSets;
-        } else {
-          idiomSets = fallbackIdioms;
-        }
-      } catch (err) {
-        console.warn('載入 chinesewords.xml 失敗，使用預設備用題庫:', err);
-        idiomSets = fallbackIdioms;
-      }
-
-      initSetDropdown();
-      renderIdiom();
-    }
-
-    function initSetDropdown() {
-      const select = document.getElementById('set-dropdown');
-      select.innerHTML = '';
-      try {
-        const saved = localStorage.getItem('grandma_idiom_set');
-        if (saved !== null) {
-          currentSetIdx = parseInt(saved, 10) || 0;
-          if (currentSetIdx >= idiomSets.length) currentSetIdx = 0;
-        }
-      } catch (e) {}
-
-      for (let i = 0; i < idiomSets.length; i++) {
-        const opt = document.createElement('option');
-        opt.value = i;
-        opt.innerText = `第 ${i + 1} 組 (題 ${i * 10 + 1}-${i * 10 + 10})`;
-        if (i === currentSetIdx) opt.selected = true;
-        select.appendChild(opt);
-      }
-    }
-
-    function onSelectSet(idx) {
-      currentSetIdx = parseInt(idx, 10);
-      currentIdiomInSet = 0;
-      saveIdiomProgress();
-      renderIdiom();
-    }
-
-    function saveIdiomProgress() {
-      try {
-        localStorage.setItem('grandma_idiom_set', currentSetIdx);
-      } catch (e) {}
-    }
-
-    function renderIdiom() {
-      if (!idiomSets[currentSetIdx]) return;
-      const curSet = idiomSets[currentSetIdx];
-      const cur = curSet[currentIdiomInSet];
-
-      document.getElementById('idiom-progress-label').innerText = `第 ${currentSetIdx + 1} 組 ・ 第 ${currentIdiomInSet + 1} / ${curSet.length} 題`;
-      document.getElementById('set-dropdown').value = currentSetIdx;
-      document.getElementById('idiom-meaning').innerText = '💡 提示：' + cur.meaning;
-
-      const displayBox = document.getElementById('idiom-display');
-      displayBox.innerHTML = '';
-      cur.chars.forEach((c, idx) => {
-        const div = document.createElement('div');
-        div.className = 'char-box' + (idx === cur.blankIndex ? ' blank' : '');
-        div.innerText = idx === cur.blankIndex ? '？' : c;
-        div.id = `char-pos-${idx}`;
-        displayBox.appendChild(div);
-      });
-
-      const optionsBox = document.getElementById('idiom-options');
-      optionsBox.innerHTML = '';
-      cur.options.forEach(opt => {
-        const btn = document.createElement('button');
-        btn.className = 'option-btn';
-        btn.innerText = opt;
-        btn.onclick = () => chooseOption(opt);
-        optionsBox.appendChild(btn);
-      });
-    }
-
-    function chooseOption(char) {
-      const curSet = idiomSets[currentSetIdx];
-      const cur = curSet[currentIdiomInSet];
-      const targetChar = cur.chars[cur.blankIndex];
-      const targetBox = document.getElementById(`char-pos-${cur.blankIndex}`);
-
-      if (char === targetChar) {
-        targetBox.innerText = char;
-        targetBox.style.color = 'var(--secondary)';
-        isLastAnswerCorrect = true;
-
-        // 如果是本組最後一題 (第 10 題)
-        if (currentIdiomInSet === curSet.length - 1) {
-          playFanfare();
-          setTimeout(() => {
-            showSetCompletionPopup();
-          }, 450);
-        } else {
-          playChime(true);
-          // 彈出確認訊息：婆婆點確認就直接進入下一題，不需多點一次
-          showFeedback("好叻呀！🎉", `答啱喇！「${cur.chars.join('')}」！`, true);
-        }
-      } else {
-        isLastAnswerCorrect = false;
-        playChime(false);
-        showFeedback("差少少，再試試！🌸", `選了「${char}」，睇睇提示再諗一諗！`, false);
-      }
-    }
-
-    function prevIdiom() {
-      if (currentIdiomInSet > 0) {
-        currentIdiomInSet--;
-        renderIdiom();
-      }
-    }
-
-    function nextIdiom() {
-      const curSet = idiomSets[currentSetIdx];
-      if (currentIdiomInSet < curSet.length - 1) {
-        currentIdiomInSet++;
-        renderIdiom();
-      } else {
-        showSetCompletionPopup();
-      }
-    }
-
-    function showFeedback(title, text, isCorrect) {
-      document.getElementById('fb-title').innerText = title;
-      document.getElementById('fb-text').innerText = text;
-      const btn = document.getElementById('fb-btn');
-      if (isCorrect) {
-        btn.innerText = "好！做下一題 ➡️";
-        btn.style.background = "var(--secondary)";
-      } else {
-        btn.innerText = "再試試 🌸";
-        btn.style.background = "#5A6B7C";
-      }
-      document.getElementById('feedback-modal').classList.add('show');
-    }
-
-    // 婆婆點確認訊息直接執行
-    function onConfirmFeedback() {
-      document.getElementById('feedback-modal').classList.remove('show');
-      if (isLastAnswerCorrect) {
-        const curSet = idiomSets[currentSetIdx];
-        if (currentIdiomInSet < curSet.length - 1) {
-          currentIdiomInSet++;
-          renderIdiom();
-        }
-      }
-    }
-
-    function showSetCompletionPopup() {
-      document.getElementById('set-popup-title').innerText = `太叻喇！第 ${currentSetIdx + 1} 組完成！🎉`;
-      const nextIdx = currentSetIdx + 1;
-      const nextBtn = document.getElementById('next-set-btn');
-
-      if (nextIdx < idiomSets.length) {
-        document.getElementById('set-popup-body').innerText = 
-          `婆婆真係好精明，第 ${currentSetIdx + 1} 組 10 題成語全部順利過關！每日動動腦，越玩越精神！`;
-        nextBtn.innerText = `挑戰第 ${nextIdx + 1} 組 ➡️`;
-      } else {
-        document.getElementById('set-popup-body').innerText = 
-          `恭喜婆婆！全部成語大功告成！頭腦非常清晰靈活！`;
-        nextBtn.innerText = `從第 1 組重新挑戰 🔄`;
-      }
-
-      document.getElementById('set-popup').classList.add('show');
-    }
-
-    function goToNextSet() {
-      document.getElementById('set-popup').classList.remove('show');
-      if (currentSetIdx < idiomSets.length - 1) {
-        currentSetIdx++;
-      } else {
-        currentSetIdx = 0;
-      }
-      currentIdiomInSet = 0;
-      saveIdiomProgress();
-      renderIdiom();
-      playChime(true);
-    }
-
-    function replayCurrentSet() {
-      document.getElementById('set-popup').classList.remove('show');
-      currentIdiomInSet = 0;
-      renderIdiom();
-    }
-
-
-    /* ========================================================
-       2. 數獨模組 (載入自 sudokusource.xml - 1000 題)
-       ======================================================== */
-    let sudokuList = [];
-    let currentSudokuIdx = 0;
-    let currentSudokuState = [];
-    let currentSolutionState = [];
-    let initialCluesState = [];
-    let selectedRow = -1;
-    let selectedCol = -1;
-
-    // 備用預設數獨 (防止無網絡/本地檔案fetch問題)
-    const fallbackSudoku = [
-      {
-        id: "1",
-        clues: "630000416000300210015003000160000052",
-        solution: "632451416523345216215643523164164352"
-      }
-    ];
-
-    async function fetchSudokuXML() {
-      try {
-        const res = await fetch('sudokusource.xml');
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        const xmlText = await res.text();
-        const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(xmlText, 'text/xml');
-        const pNodes = xmlDoc.getElementsByTagName('puzzle');
-
-        const loaded = [];
-        for (let i = 0; i < pNodes.length; i++) {
-          const id = pNodes[i].getAttribute('id') || (i + 1);
-          const clues = pNodes[i].getElementsByTagName('clues')[0]?.textContent.trim() || '';
-          const solution = pNodes[i].getElementsByTagName('solution')[0]?.textContent.trim() || '';
-          if (clues.length === 36 && solution.length === 36) {
-            loaded.push({ id, clues, solution });
-          }
-        }
-
-        if (loaded.length > 0) {
-          sudokuList = loaded;
-        } else {
-          sudokuList = fallbackSudoku;
-        }
-      } catch (err) {
-        console.warn('載入 sudokusource.xml 失敗，使用備用題目:', err);
-        sudokuList = fallbackSudoku;
-      }
-
-      initSudokuSelector();
-      loadCurrentSudokuPuzzle();
-    }
-
-    function initSudokuSelector() {
-      const select = document.getElementById('sudoku-select');
-      select.innerHTML = '';
-      try {
-        const saved = localStorage.getItem('grandma_sudoku_idx');
-        if (saved !== null) {
-          currentSudokuIdx = parseInt(saved, 10) || 0;
-          if (currentSudokuIdx >= sudokuList.length) currentSudokuIdx = 0;
-        }
-      } catch (e) {}
-
-      // 為避免 1000 項下拉選單太長，建置每 10 題或整百題的跳題快速清單，亦可跳指定題
-      for (let i = 0; i < sudokuList.length; i += 10) {
-        const opt = document.createElement('option');
-        opt.value = i;
-        opt.innerText = `第 ${i + 1} - ${Math.min(i + 10, sudokuList.length)} 題`;
-        if (currentSudokuIdx >= i && currentSudokuIdx < i + 10) opt.selected = true;
-        select.appendChild(opt);
-      }
-    }
-
-    function onSelectSudoku(val) {
-      currentSudokuIdx = parseInt(val, 10);
-      saveSudokuProgress();
-      loadCurrentSudokuPuzzle();
-    }
-
-    function saveSudokuProgress() {
-      try {
-        localStorage.setItem('grandma_sudoku_idx', currentSudokuIdx);
-      } catch (e) {}
-    }
-
-    function loadCurrentSudokuPuzzle() {
-      if (!sudokuList[currentSudokuIdx]) return;
-      const p = sudokuList[currentSudokuIdx];
-
-      document.getElementById('sudoku-progress-label').innerText = `第 ${currentSudokuIdx + 1} / ${sudokuList.length} 題`;
-      
-      // 更新下拉選單
-      const sel = document.getElementById('sudoku-select');
-      for (let opt of sel.options) {
-        const base = parseInt(opt.value, 10);
-        if (currentSudokuIdx >= base && currentSudokuIdx < base + 10) {
-          opt.selected = true;
-          break;
-        }
-      }
-
-      // 解析 36 字元字串為 6x6 陣列
-      initialCluesState = [];
-      currentSudokuState = [];
-      currentSolutionState = [];
-
-      for (let r = 0; r < 6; r++) {
-        const rowClue = [];
-        const rowCurr = [];
-        const rowSol = [];
-        for (let c = 0; c < 6; c++) {
-          const idx = r * 6 + c;
-          const clueVal = parseInt(p.clues[idx], 10) || 0;
-          const solVal = parseInt(p.solution[idx], 10) || 0;
-          rowClue.push(clueVal);
-          rowCurr.push(clueVal);
-          rowSol.push(solVal);
-        }
-        initialCluesState.push(rowClue);
-        currentSudokuState.push(rowCurr);
-        currentSolutionState.push(rowSol);
-      }
-
-      selectedRow = -1;
-      selectedCol = -1;
-      renderSudokuGrid();
-    }
-
-    function renderSudokuGrid() {
-      const grid = document.getElementById('sudoku-grid');
-      grid.innerHTML = '';
-      for (let r = 0; r < 6; r++) {
-        for (let c = 0; c < 6; c++) {
-          const val = currentSudokuState[r][c];
-          const isGiven = initialCluesState[r][c] !== 0;
-          const cell = document.createElement('div');
-          cell.className = 'sudoku-cell' + (isGiven ? ' given' : (val !== 0 ? ' user-filled' : ''));
-          if (r === selectedRow && c === selectedCol) cell.classList.add('selected');
-          cell.innerText = val !== 0 ? val : '';
-          cell.onclick = () => selectCell(r, c, isGiven);
-          grid.appendChild(cell);
-        }
-      }
-    }
-
-    function selectCell(r, c, isGiven) {
-      if (isGiven) {
-        selectedRow = -1;
-        selectedCol = -1;
-      } else {
-        selectedRow = r;
-        selectedCol = c;
-      }
-      renderSudokuGrid();
-    }
-
-    function inputNumber(num) {
-      if (selectedRow === -1 || selectedCol === -1) return;
-      if (initialCluesState[selectedRow][selectedCol] !== 0) return;
-
-      // 擦除動作
-      if (num === 0) {
-        currentSudokuState[selectedRow][selectedCol] = 0;
-        renderSudokuGrid();
-        return;
-      }
-
-      // 即時核對：立即檢查填入的數字是否等於答案
-      const correctNum = currentSolutionState[selectedRow][selectedCol];
-      if (num === correctNum) {
-        // 答對：填入並發出悅耳提示音
-        currentSudokuState[selectedRow][selectedCol] = num;
-        playChime(true);
-        renderSudokuGrid();
-
-        // 檢查是否整盤所有空格均已填妥
-        let isAllFilled = true;
-        for (let r = 0; r < 6; r++) {
-          for (let c = 0; c < 6; c++) {
-            if (currentSudokuState[r][c] === 0) {
-              isAllFilled = false;
-              break;
-            }
-          }
-          if (!isAllFilled) break;
-        }
-
-        if (isAllFilled) {
-          // 全部答對：奏響號角，取消選取，彈出專屬讚賞視窗並引導去新題目
-          playFanfare();
-          selectedRow = -1;
-          selectedCol = -1;
-          renderSudokuGrid();
-          setTimeout(() => {
-            showSudokuVictoryPopup();
-          }, 400);
-        }
-      } else {
-        // 答錯即刻彈 POPUP 提佢，不留錯字在格內
-        playChime(false);
-        showFeedback("差少少，留意呢格！🌸", `呢格填「${num}」唔係好啱，試下填其他數字諗一諗！`, false);
-      }
-    }
-
-    function resetSudoku() {
-      for (let r = 0; r < 6; r++) {
-        for (let c = 0; c < 6; c++) {
-          currentSudokuState[r][c] = initialCluesState[r][c];
-        }
-      }
-      selectedRow = -1;
-      selectedCol = -1;
-      renderSudokuGrid();
-    }
-
-    function showSudokuVictoryPopup() {
-      document.getElementById('sudoku-victory-title').innerText = `太叻喇！第 ${currentSudokuIdx + 1} 題全部答啱！🏆`;
-      document.getElementById('sudoku-victory-body').innerText = 
-        `婆婆好犀利呀！第 ${currentSudokuIdx + 1} 題 6×6 數獨全部填啱晒，頭腦好精明！現在為您前進去下一題！`;
-      document.getElementById('sudoku-victory-popup').classList.add('show');
-    }
-
-    // 完成後去下一題，唔停留喺同一個位
-    function onSudokuGoNext() {
-      document.getElementById('sudoku-victory-popup').classList.remove('show');
-      nextSudoku();
-      playChime(true);
-    }
-
-    // 完成後隨機抽新題目
-    function onSudokuGoRandom() {
-      document.getElementById('sudoku-victory-popup').classList.remove('show');
-      randomSudoku();
-      playChime(true);
-    }
-
-    function prevSudoku() {
-      if (currentSudokuIdx > 0) {
-        currentSudokuIdx--;
-        saveSudokuProgress();
-        loadCurrentSudokuPuzzle();
-      }
-    }
-
-    function nextSudoku() {
-      if (currentSudokuIdx < sudokuList.length - 1) {
-        currentSudokuIdx++;
-        saveSudokuProgress();
-        loadCurrentSudokuPuzzle();
-      }
-    }
-
-    function randomSudoku() {
-      const rand = Math.floor(Math.random() * sudokuList.length);
-      currentSudokuIdx = rand;
-      saveSudokuProgress();
-      loadCurrentSudokuPuzzle();
-      playChime(true);
-    }
-
-    // 初始化啟動 (載入雙 XML)
-    fetchIdiomsXML();
-    fetchSudokuXML();
-  </script>
 </body>
 </html>
