@@ -1,5 +1,6 @@
 /* 音效合成 (Web Audio API) */
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
 function playChime(success = true) {
   if (audioCtx.state === 'suspended') audioCtx.resume();
   const now = audioCtx.currentTime;
@@ -59,11 +60,14 @@ function switchTab(tab) {
   document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
   document.querySelectorAll('.game-container').forEach(c => c.classList.remove('active'));
   if (tab === 'idiom') {
-    document.querySelector('.tab-btn:nth-child(1)').classList.add('active');
-    document.getElementById('idiom-game').classList.add('active');
-  } else {
-    document.querySelector('.tab-btn:nth-child(2)').classList.add('active');
-    document.getElementById('sudoku-game').classList.add('active');
+    document.querySelectorAll('.tab-btn')[0]?.classList.add('active');
+    document.getElementById('idiom-game')?.classList.add('active');
+  } else if (tab === 'idiom-adv') {
+    document.querySelectorAll('.tab-btn')[1]?.classList.add('active');
+    document.getElementById('idiom-adv-game')?.classList.add('active');
+  } else if (tab === 'sudoku') {
+    document.querySelectorAll('.tab-btn')[2]?.classList.add('active');
+    document.getElementById('sudoku-game')?.classList.add('active');
   }
 }
 

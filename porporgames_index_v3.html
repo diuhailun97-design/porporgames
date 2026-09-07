@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+
+<html lang="zh-HK">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
+<meta content="婆婆健腦樂園" name="apple-mobile-web-app-title"/>
+<title>婆婆健腦樂園 - 益智小遊戲</title>
+<style>
+    :root {
+      --bg-color: #F7F4EB;
+      --card-bg: #FFFFFF;
+      --text-main: #2C2A29;
+      --primary: #C84B31;
+      --primary-hover: #A33B24;
+      --secondary: #2D6A4F;
+      --secondary-hover: #214F3B;
+      --accent: #E9C46A;
+      --border-color: #D3CBB8;
+      --selected-cell: #FFF3B0;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    body {
+      margin: 0;
+      padding: 16px;
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang HK", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    header {
+      width: 100%;
+      max-width: 780px;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      margin: 0 0 6px 0;
+      font-size: 34px;
+      color: var(--primary);
+      letter-spacing: 2px;
+    }
+
+    .subtitle {
+      font-size: 20px;
+      color: #666;
+      margin: 0 0 14px 0;
+    }
+
+    .nav-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      max-width: 780px;
+      margin-bottom: 18px;
+    }
+
+    .tab-btn {
+      flex: 1;
+      padding: 16px 10px;
+      font-size: 24px;
+      font-weight: bold;
+      border: 3px solid var(--border-color);
+      border-radius: 16px;
+      background: #EFE9D9;
+      color: #555;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      touch-action: manipulation;
+    }
+
+    .tab-btn.active {
+      background: var(--primary);
+      color: #FFF;
+      border-color: var(--primary);
+      box-shadow: 0 4px 10px rgba(200, 75, 49, 0.3);
+    }
+
+    .game-container {
+      width: 100%;
+      max-width: 780px;
+      background: var(--card-bg);
+      border: 3px solid var(--border-color);
+      border-radius: 20px;
+      padding: 24px 20px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .game-container.active {
+      display: flex;
+    }
+
+    /* 頂部進度與換組列 */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 2px dashed #E0D9C8;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .progress-title {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--secondary);
+    }
+
+    .select-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .select-input {
+      font-size: 20px;
+      font-weight: bold;
+      padding: 8px 14px;
+      border-radius: 10px;
+      border: 2px solid var(--border-color);
+      background: #FFF;
+      color: #333;
+      cursor: pointer;
+    }
+
+    /* 成語題目卡片 */
+    .idiom-question-box {
+      background: #FAF8F2;
+      border: 3px solid var(--border-color);
+      border-radius: 16px;
+      padding: 20px;
+      width: 100%;
+      text-align: center;
+      margin-bottom: 22px;
+    }
+
+    .idiom-chars {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .char-box {
+      width: 76px;
+      height: 88px;
+      border: 3px solid #666;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      font-weight: 800;
+      background: #FFF;
+      color: var(--text-main);
+      box-shadow: 0 3px 6px rgba(0,0,0,0.05);
+    }
+
+    .char-box.blank {
+      border: 3px dashed var(--primary);
+      background: #FFF7F5;
+      color: var(--primary);
+    }
+
+    .idiom-hint-text {
+      font-size: 22px;
+      color: #444;
+      background: #FFF;
+      padding: 12px 18px;
+      border-radius: 10px;
+      border: 2px dashed #E0D9C8;
+      display: inline-block;
+      max-width: 95%;
+      line-height: 1.5;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      width: 100%;
+      max-width: 500px;
+      margin-bottom: 22px;
+    }
+
+    .option-btn {
+      height: 84px;
+      font-size: 42px;
+      font-weight: bold;
+      border-radius: 16px;
+      border: 3px solid var(--secondary);
+      background: #FFF;
+      color: var(--secondary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.06);
+      touch-action: manipulation;
+    }
+
+    .option-btn:active {
+      background: var(--secondary);
+      color: #FFF;
+    }
+
+    /* 6x6 簡易數獨 */
+    .sudoku-board-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    .sudoku-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      width: 100%;
+      max-width: 480px;
+      aspect-ratio: 1;
+      border: 4px solid #222;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      background: #222;
+      gap: 2px;
+    }
+
+    .sudoku-cell {
+      background: #FFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 38px;
+      font-weight: bold;
+      cursor: pointer;
+      touch-action: manipulation;
+    }
+
+    .sudoku-cell:nth-child(3n) {
+      border-right: 3px solid #222;
+    }
+    .sudoku-cell:nth-child(n+13):nth-child(-n+18),
+    .sudoku-cell:nth-child(n+25):nth-child(-n+30) {
+      border-top: 3px solid #222;
+    }
+
+    .sudoku-cell.given {
+      background: #F0EDE6;
+      color: #333;
+    }
+
+    .sudoku-cell.selected {
+      background: var(--selected-cell) !important;
+      outline: 4px solid #E29578;
+      z-index: 2;
+    }
+
+    .sudoku-cell.user-filled {
+      color: var(--primary);
+    }
+
+    .sudoku-keypad {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
+      width: 100%;
+      max-width: 480px;
+      margin-bottom: 16px;
+    }
+
+    .key-btn {
+      height: 72px;
+      font-size: 36px;
+      font-weight: bold;
+      border-radius: 14px;
+      border: 3px solid var(--border-color);
+      background: #FFF;
+      color: #333;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      touch-action: manipulation;
+    }
+
+    .key-btn:active {
+      background: var(--primary);
+      color: #FFF;
+    }
+
+    .erase-btn {
+      background: #FCEAE6;
+      color: var(--primary);
+      border-color: #EAC4BD;
+      font-size: 24px;
+    }
+
+    .controls {
+      display: flex;
+      gap: 12px;
+      width: 100%;
+      max-width: 540px;
+      justify-content: center;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+
+    .action-btn {
+      flex: 1;
+      min-width: 140px;
+      padding: 16px 18px;
+      font-size: 24px;
+      font-weight: bold;
+      border-radius: 14px;
+      border: none;
+      background: var(--secondary);
+      color: #FFF;
+      cursor: pointer;
+      touch-action: manipulation;
+    }
+
+    .action-btn.alt {
+      background: #5A6B7C;
+    }
+
+    .action-btn.rand {
+      background: #E76F51;
+    }
+
+    /* 單題回饋彈窗 */
+    .feedback-banner {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.85);
+      background: rgba(255, 255, 255, 0.98);
+      border: 5px solid var(--primary);
+      border-radius: 24px;
+      padding: 30px 36px;
+      text-align: center;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s ease;
+      max-width: 90%;
+      width: 480px;
+    }
+
+    .feedback-banner.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .feedback-title {
+      font-size: 38px;
+      font-weight: 900;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    .feedback-body {
+      font-size: 26px;
+      color: #333;
+      margin-bottom: 24px;
+      line-height: 1.4;
+    }
+
+    /* 一組完成慶祝彈窗 (SET COMPLETION POPUP) */
+    .set-popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 200;
+    }
+
+    .set-popup-overlay.show {
+      display: flex;
+    }
+
+    .set-popup-card {
+      background: #FFF;
+      border: 6px solid #E9C46A;
+      border-radius: 28px;
+      padding: 36px 32px;
+      text-align: center;
+      max-width: 90%;
+      width: 520px;
+      box-shadow: 0 16px 50px rgba(0,0,0,0.3);
+      animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.7); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .set-popup-icon {
+      font-size: 64px;
+      margin-bottom: 8px;
+    }
+
+    .set-popup-title {
+      font-size: 38px;
+      font-weight: 900;
+      color: var(--primary);
+      margin-bottom: 14px;
+    }
+
+    .set-popup-body {
+      font-size: 26px;
+      color: #333;
+      margin-bottom: 28px;
+      line-height: 1.5;
+    }
+
+    .set-popup-btns {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .source-tag {
+      font-size: 15px;
+      color: #888;
+      margin-top: 14px;
+    }
+  
+    .tab-btn {
+      padding: 14px 6px;
+      font-size: 20px;
+    }
+    .adv-slot {
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .adv-slot.active-slot {
+      border: 4px solid #E76F51 !important;
+      box-shadow: 0 0 14px rgba(231, 111, 81, 0.45);
+      transform: scale(1.04);
+    }
+    .adv-options-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      width: 100%;
+      max-width: 580px;
+      margin-bottom: 20px;
+    }
+    .adv-opt-btn {
+      height: 76px;
+      font-size: 38px;
+      font-weight: bold;
+      border-radius: 14px;
+      border: 3px solid var(--secondary);
+      background: #FFF;
+      color: var(--secondary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.06);
+      touch-action: manipulation;
+      transition: all 0.15s ease;
+    }
+    .adv-opt-btn:active {
+      background: var(--secondary);
+      color: #FFF;
+    }
+    .adv-opt-btn.used {
+      background: #EAE6DC !important;
+      color: #AAA !important;
+      border-color: #D3CBB8 !important;
+      box-shadow: none !important;
+      cursor: not-allowed;
+      opacity: 0.55;
+    }
+
+  </style>
+</head>
+<body>
+<header>
+<h1>🌸 婆婆益智樂園 🌸</h1>
+<div class="subtitle">每日動動腦，越玩越精神！</div>
+</header>
+<div class="nav-tabs">
+<button class="tab-btn active" onclick="switchTab('idiom')">📖 成語猜猜</button>
+<button class="tab-btn" onclick="switchTab('idiom-adv')">🌟 成語猜猜 (升級版)</button>
+<button class="tab-btn" onclick="switchTab('sudoku')">🔢 簡易數獨 (1000題)</button>
+</div>
+<!-- 成語猜猜 -->
+<div class="game-container active" id="idiom-game">
+<div class="top-bar">
+<div class="progress-title" id="idiom-progress-label">載入題目中...</div>
+<div class="select-wrapper">
+<label for="set-dropdown" style="font-size: 18px; color: #666;">換組：</label>
+<select class="select-input" id="set-dropdown" onchange="onSelectSet(this.value)"></select>
+</div>
+</div>
+<div class="idiom-question-box">
+<div class="idiom-chars" id="idiom-display"></div>
+<div class="idiom-hint-text" id="idiom-meaning">釋義載入中...</div>
+</div>
+<div class="options-grid" id="idiom-options"></div>
+<div class="controls">
+<button class="action-btn alt" onclick="prevIdiom()">⏮️ 上一題</button>
+<button class="action-btn" onclick="nextIdiom()">跳過 / 下一題 ⏭️</button>
+</div>
+<div class="source-tag">題庫來源：chinesewords.xml</div>
+</div>
+
+<!-- 成語猜猜（升級版） - 4 字全選 -->
+<div class="game-container" id="idiom-adv-game">
+<div class="top-bar">
+<div class="progress-title" id="adv-progress-label">載入升級版題目中...</div>
+<div class="select-wrapper">
+<label for="adv-set-dropdown" style="font-size: 18px; color: #666;">換組：</label>
+<select class="select-input" id="adv-set-dropdown" onchange="onSelectAdvSet(this.value)"></select>
+</div>
+</div>
+<div style="font-size: 22px; color: #555; margin-bottom: 14px; text-align: center;">
+      請根據釋義提示，從下方選出 4 個字拼出完整成語！
+    </div>
+<div class="idiom-question-box">
+<div class="idiom-chars" id="adv-display"></div>
+<div class="idiom-hint-text" id="adv-meaning">釋義載入中...</div>
+</div>
+<div class="adv-options-grid" id="adv-options"></div>
+<div class="controls">
+<button class="action-btn alt" onclick="clearAdvSelection()" style="flex: 1; height: 64px;">清除重選 ⌫</button>
+<button class="action-btn" onclick="checkAdvAnswer()" style="flex: 1; height: 64px;">核對答案 ✔️</button>
+</div>
+<div class="controls" style="margin-top: 10px;">
+<button class="action-btn alt" onclick="prevAdvIdiom()" style="height: 64px;">⏮️ 上一題</button>
+<button class="action-btn" onclick="nextAdvIdiom()" style="height: 64px;">跳過 / 下一題 ⏭️</button>
+</div>
+<div class="source-tag">題庫來源：chinesewords.xml (升級版挑戰)</div>
+</div>
+
+<!-- 簡易數獨 -->
+<div class="game-container" id="sudoku-game">
+<div class="top-bar">
+<div class="progress-title" id="sudoku-progress-label">第 1 / 1000 題</div>
+<div class="select-wrapper">
+<label for="sudoku-select" style="font-size: 18px; color: #666;">跳題：</label>
+<select class="select-input" id="sudoku-select" onchange="onSelectSudoku(this.value)"></select>
+</div>
+</div>
+<div style="font-size: 22px; color: #555; margin-bottom: 14px; text-align: center;">
+      每行、每列同每個 2×3 六宮格，填入 1 至 6 數字！
+    </div>
+<div class="sudoku-board-wrapper">
+<div class="sudoku-grid" id="sudoku-grid"></div>
+<div class="sudoku-keypad">
+<button class="key-btn" onclick="inputNumber(1)">1</button>
+<button class="key-btn" onclick="inputNumber(2)">2</button>
+<button class="key-btn" onclick="inputNumber(3)">3</button>
+<button class="key-btn" onclick="inputNumber(4)">4</button>
+<button class="key-btn" onclick="inputNumber(5)">5</button>
+<button class="key-btn" onclick="inputNumber(6)">6</button>
+</div>
+<div class="controls">
+<button class="key-btn erase-btn" onclick="inputNumber(0)" style="flex: 1; min-width: 100px; height: 64px;">擦除 ⌫</button>
+<button class="action-btn alt" onclick="resetSudoku()" style="flex: 1; height: 64px;">重設呢題 🔄</button>
+</div>
+<div class="controls" style="margin-top: 10px;">
+<button class="action-btn alt" onclick="prevSudoku()" style="height: 64px;">◀️ 上一題</button>
+<button class="action-btn rand" onclick="randomSudoku()" style="height: 64px;">隨機抽一題 🎲</button>
+<button class="action-btn alt" onclick="nextSudoku()" style="height: 64px;">下一題 ▶️</button>
+</div>
+</div>
+<div class="source-tag">題庫來源：sudokusource.xml</div>
+</div>
+<!-- 單題回饋彈窗 (答啱直接點「好！下一題 ➡️」前往下一題，不需多餘操作) -->
+<div class="feedback-banner" id="feedback-modal">
+<div class="feedback-title" id="fb-title">好叻呀！🎉</div>
+<div class="feedback-body" id="fb-text">婆婆答啱喇！</div>
+<button class="action-btn" id="fb-btn" onclick="onConfirmFeedback()" style="height: 72px; font-size: 28px;">
+      好！做下一題 ➡️
+    </button>
+</div>
+<!-- 10題整組完成慶祝彈窗 (SET POPUP) -->
+<div class="set-popup-overlay" id="set-popup">
+<div class="set-popup-card">
+<div class="set-popup-icon">🏆✨🎉</div>
+<div class="set-popup-title" id="set-popup-title">太叻喇！第 1 組完成！</div>
+<div class="set-popup-body" id="set-popup-body">
+        婆婆真係好精明，呢組 10 題成語全部順利過關！每日動動腦，越玩越精神！
+      </div>
+<div class="set-popup-btns">
+<button class="action-btn" id="next-set-btn" onclick="goToNextSet()" style="height: 76px; font-size: 28px;">
+          挑戰下一組 (第 2 組) ➡️
+        </button>
+<button class="action-btn alt" onclick="replayCurrentSet()" style="height: 60px; font-size: 22px;">
+          重溫呢一組 🔄
+        </button>
+</div>
+</div>
+</div>
+<!-- 數獨全對完成慶祝彈窗 (SUDOKU VICTORY POPUP) -->
+<div class="set-popup-overlay" id="sudoku-victory-popup">
+<div class="set-popup-card">
+<div class="set-popup-icon">🏆✨🎉</div>
+<div class="set-popup-title" id="sudoku-victory-title">太叻喇！數獨全部答啱！</div>
+<div class="set-popup-body" id="sudoku-victory-body">
+        婆婆好犀利呀！成盤 6×6 數獨全部填啱晒，頭腦好精明！現在為您前進去下一題！
+      </div>
+<div class="set-popup-btns">
+<button class="action-btn" onclick="onSudokuGoNext()" style="height: 76px; font-size: 28px;">
+          做下一題 ➡️
+        </button>
+<button class="action-btn rand" onclick="onSudokuGoRandom()" style="height: 64px; font-size: 24px;">
+          隨機抽新題目 🎲
+        </button>
+</div>
+</div>
+</div>
+
+<script src="common.js"></script>
+<script src="idiom.js"></script>
+<script src="idiom_advanced.js"></script>
+<script src="sudoku.js"></script>
+
+</body>
+</html>
