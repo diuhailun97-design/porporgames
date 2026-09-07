@@ -453,6 +453,57 @@
       color: #888;
       margin-top: 14px;
     }
+  
+    .tab-btn {
+      padding: 14px 6px;
+      font-size: 20px;
+    }
+    .adv-slot {
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .adv-slot.active-slot {
+      border: 4px solid #E76F51 !important;
+      box-shadow: 0 0 14px rgba(231, 111, 81, 0.45);
+      transform: scale(1.04);
+    }
+    .adv-options-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      width: 100%;
+      max-width: 580px;
+      margin-bottom: 20px;
+    }
+    .adv-opt-btn {
+      height: 76px;
+      font-size: 38px;
+      font-weight: bold;
+      border-radius: 14px;
+      border: 3px solid var(--secondary);
+      background: #FFF;
+      color: var(--secondary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.06);
+      touch-action: manipulation;
+      transition: all 0.15s ease;
+    }
+    .adv-opt-btn:active {
+      background: var(--secondary);
+      color: #FFF;
+    }
+    .adv-opt-btn.used {
+      background: #EAE6DC !important;
+      color: #AAA !important;
+      border-color: #D3CBB8 !important;
+      box-shadow: none !important;
+      cursor: not-allowed;
+      opacity: 0.55;
+    }
+
   </style>
 </head>
 <body>
@@ -462,6 +513,7 @@
 </header>
 <div class="nav-tabs">
 <button class="tab-btn active" onclick="switchTab('idiom')">📖 成語猜猜</button>
+<button class="tab-btn" onclick="switchTab('idiom-adv')">🌟 成語猜猜 (升級版)</button>
 <button class="tab-btn" onclick="switchTab('sudoku')">🔢 簡易數獨 (1000題)</button>
 </div>
 <!-- 成語猜猜 -->
@@ -484,6 +536,35 @@
 </div>
 <div class="source-tag">題庫來源：chinesewords.xml</div>
 </div>
+
+<!-- 成語猜猜（升級版） - 4 字全選 -->
+<div class="game-container" id="idiom-adv-game">
+<div class="top-bar">
+<div class="progress-title" id="adv-progress-label">載入升級版題目中...</div>
+<div class="select-wrapper">
+<label for="adv-set-dropdown" style="font-size: 18px; color: #666;">換組：</label>
+<select class="select-input" id="adv-set-dropdown" onchange="onSelectAdvSet(this.value)"></select>
+</div>
+</div>
+<div style="font-size: 22px; color: #555; margin-bottom: 14px; text-align: center;">
+      請根據釋義提示，從下方選出 4 個字拼出完整成語！
+    </div>
+<div class="idiom-question-box">
+<div class="idiom-chars" id="adv-display"></div>
+<div class="idiom-hint-text" id="adv-meaning">釋義載入中...</div>
+</div>
+<div class="adv-options-grid" id="adv-options"></div>
+<div class="controls">
+<button class="action-btn alt" onclick="clearAdvSelection()" style="flex: 1; height: 64px;">清除重選 ⌫</button>
+<button class="action-btn" onclick="checkAdvAnswer()" style="flex: 1; height: 64px;">核對答案 ✔️</button>
+</div>
+<div class="controls" style="margin-top: 10px;">
+<button class="action-btn alt" onclick="prevAdvIdiom()" style="height: 64px;">⏮️ 上一題</button>
+<button class="action-btn" onclick="nextAdvIdiom()" style="height: 64px;">跳過 / 下一題 ⏭️</button>
+</div>
+<div class="source-tag">題庫來源：chinesewords.xml (升級版挑戰)</div>
+</div>
+
 <!-- 簡易數獨 -->
 <div class="game-container" id="sudoku-game">
 <div class="top-bar">
@@ -565,6 +646,7 @@
 
 <script src="common.js"></script>
 <script src="idiom.js"></script>
+<script src="idiom_advanced.js"></script>
 <script src="sudoku.js"></script>
 
 </body>
