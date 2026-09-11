@@ -1,0 +1,1063 @@
+<?xml version="1.0" encoding="utf-8"?>
+<spellingGame>
+  <set id="1" player="younger" name="Set 1: Tricky Exception Words">
+    <question id="1">
+      <word>people</word>
+      <hint>Many ______ came to watch the school football match.</hint>
+      <meaning>Human beings in general; a community of individuals.</meaning>
+      <category>Tricky Words</category>
+    </question>
+    <question id="2">
+      <word>thought</word>
+      <hint>She ______ that it was going to rain today.</hint>
+      <meaning>Past tense of think; had an idea or opinion.</meaning>
+      <category>Tricky Words</category>
+    </question>
+    <question id="3">
+      <word>parents</word>
+      <hint>Both of my ______ helped me bake a chocolate cake.</hint>
+      <meaning>A father and mother.</meaning>
+      <category>Tricky Words</category>
+    </question>
+    <question id="4">
+      <word>would</word>
+      <hint>If it is sunny tomorrow, we ______ love to go to the beach.</hint>
+      <meaning>Expressing a wish, intention, or condition.</meaning>
+      <category>Tricky Words</category>
+    </question>
+    <question id="5">
+      <word>through</word>
+      <hint>The red train travelled ______ the long dark tunnel.</hint>
+      <meaning>Moving in one side and out the opposite side.</meaning>
+      <category>Tricky Words</category>
+    </question>
+    <question id="6">
+      <word>should</word>
+      <hint>You ______ always wash your hands before eating dinner.</hint>
+      <meaning>Used to indicate obligation or the best action.</meaning>
+      <category>Tricky Words</category>
+    </question>
+    <question id="7">
+      <word>friend</word>
+      <hint>Marc played tag in the playground with his best ______.</hint>
+      <meaning>A person whom one knows, likes, and trusts.</meaning>
+      <category>Tricky Words</category>
+    </question>
+    <question id="8">
+      <word>house</word>
+      <hint>We built a cosy blanket fort inside our warm ______.</hint>
+      <meaning>A building for human habitation.</meaning>
+      <category>Tricky Words</category>
+    </question>
+    <question id="9">
+      <word>laugh</word>
+      <hint>The funny clown made all the children ______ loudly.</hint>
+      <meaning>Make spontaneous sounds of amusement and joy.</meaning>
+      <category>Tricky Words</category>
+    </question>
+    <question id="10">
+      <word>because</word>
+      <hint>I wore my thick winter coat ______ it was freezing outside.</hint>
+      <meaning>For the reason that; since.</meaning>
+      <category>Tricky Words</category>
+    </question>
+  </set>
+  <set id="2" player="younger" name="Set 2: The 12 Months of the Year">
+    <question id="1">
+      <word>January</word>
+      <hint>The first month of the brand new year is ______.</hint>
+      <meaning>The 1st month of the year.</meaning>
+      <category>Months</category>
+    </question>
+    <question id="2">
+      <word>February</word>
+      <hint>The shortest month with only 28 or 29 days is ______.</hint>
+      <meaning>The 2nd month of the year.</meaning>
+      <category>Months</category>
+    </question>
+    <question id="3">
+      <word>March</word>
+      <hint>Spring begins and yellow daffodils bloom in windy ______.</hint>
+      <meaning>The 3rd month of the year.</meaning>
+      <category>Months</category>
+    </question>
+    <question id="4">
+      <word>April</word>
+      <hint>Spring showers and fun Easter egg hunts arrive in ______.</hint>
+      <meaning>The 4th month of the year.</meaning>
+      <category>Months</category>
+    </question>
+    <question id="5">
+      <word>May</word>
+      <hint>Mother's Day is celebrated on a sunny Sunday in ______.</hint>
+      <meaning>The 5th month of the year.</meaning>
+      <category>Months</category>
+    </question>
+    <question id="6">
+      <word>June</word>
+      <hint>The sixth month when the weather turns warm is ______.</hint>
+      <meaning>The 6th month of the year.</meaning>
+      <category>Months</category>
+    </question>
+    <question id="7">
+      <word>July</word>
+      <hint>School finishes and our long summer holiday starts in ______.</hint>
+      <meaning>The 7th month of the year.</meaning>
+      <category>Months</category>
+    </question>
+    <question id="8">
+      <word>August</word>
+      <hint>We love swimming and building sandcastles at the beach in ______.</hint>
+      <meaning>The 8th month of the year.</meaning>
+      <category>Months</category>
+    </question>
+    <question id="9">
+      <word>September</word>
+      <hint>Children pack new school bags and return to school in ______.</hint>
+      <meaning>The 9th month of the year.</meaning>
+      <category>Months</category>
+    </question>
+    <question id="10">
+      <word>October</word>
+      <hint>We dress up in spooky costumes for Halloween in ______.</hint>
+      <meaning>The 10th month of the year.</meaning>
+      <category>Months</category>
+    </question>
+    <question id="11">
+      <word>November</word>
+      <hint>People watch bright fireworks fill the dark night sky in ______.</hint>
+      <meaning>The 11th month of the year.</meaning>
+      <category>Months</category>
+    </question>
+    <question id="12">
+      <word>December</word>
+      <hint>The twelfth month when we decorate our Christmas tree is ______.</hint>
+      <meaning>The 12th month of the year.</meaning>
+      <category>Months</category>
+    </question>
+  </set>
+  <set id="3" player="younger" name="Set 3: Transport &amp; Vehicles">
+    <question id="1">
+      <word>airplane</word>
+      <hint>The huge ______ flew high above the fluffy white clouds.</hint>
+      <meaning>A powered flying vehicle with fixed wings.</meaning>
+      <category>Transport</category>
+    </question>
+    <question id="2">
+      <word>bicycle</word>
+      <hint>He always wears a safety helmet when riding his ______.</hint>
+      <meaning>A two-wheeled vehicle that you pedal.</meaning>
+      <category>Transport</category>
+    </question>
+    <question id="3">
+      <word>helicopter</word>
+      <hint>The search-and-rescue ______ hovered above the open hills.</hint>
+      <meaning>An aircraft with large rotating blades overhead.</meaning>
+      <category>Transport</category>
+    </question>
+    <question id="4">
+      <word>passenger</word>
+      <hint>Every ______ on the flight must fasten their seatbelt.</hint>
+      <meaning>A traveller in a vehicle who is not the driver.</meaning>
+      <category>Transport</category>
+    </question>
+    <question id="5">
+      <word>station</word>
+      <hint>The electric train stopped right by platform 2 of the ______.</hint>
+      <meaning>A regular stopping place along a railway line.</meaning>
+      <category>Transport</category>
+    </question>
+    <question id="6">
+      <word>underground</word>
+      <hint>We rode the city ______ metro train to visit the museum.</hint>
+      <meaning>An urban railway system operating in tunnels.</meaning>
+      <category>Transport</category>
+    </question>
+    <question id="7">
+      <word>harbour</word>
+      <hint>Fishing boats returned safely from the storm into the ______.</hint>
+      <meaning>A sheltered body of water where ships can dock.</meaning>
+      <category>Transport</category>
+    </question>
+    <question id="8">
+      <word>journey</word>
+      <hint>We packed tasty snacks for our long motorway ______.</hint>
+      <meaning>An act of travelling from one place to another.</meaning>
+      <category>Transport</category>
+    </question>
+  </set>
+  <set id="4" player="younger" name="Set 4: Year 4 Suffixes &amp; Phonics">
+    <question id="1">
+      <word>information</word>
+      <hint>We searched the non-fiction books to find useful ______.</hint>
+      <meaning>Facts and knowledge provided or learned.</meaning>
+      <category>Suffixes (-tion)</category>
+    </question>
+    <question id="2">
+      <word>invention</word>
+      <hint>The electric lightbulb was a world-changing ______.</hint>
+      <meaning>A brand new useful machine, device, or process.</meaning>
+      <category>Suffixes (-tion)</category>
+    </question>
+    <question id="3">
+      <word>decision</word>
+      <hint>After thinking for a long time, she made a wise ______.</hint>
+      <meaning>A conclusion or choice made after consideration.</meaning>
+      <category>Suffixes (-sion)</category>
+    </question>
+    <question id="4">
+      <word>question</word>
+      <hint>Marc raised his hand politely to ask the teacher a ______.</hint>
+      <meaning>A sentence worded to elicit information.</meaning>
+      <category>Core Vocabulary</category>
+    </question>
+    <question id="5">
+      <word>dangerous</word>
+      <hint>Running across a busy motorway road is extremely ______.</hint>
+      <meaning>Able or likely to cause harm, injury, or pain.</meaning>
+      <category>Suffixes (-ous)</category>
+    </question>
+    <question id="6">
+      <word>famous</word>
+      <hint>The ______ footballer scored three goals in the cup final.</hint>
+      <meaning>Known by very many people far and wide.</meaning>
+      <category>Suffixes (-ous)</category>
+    </question>
+    <question id="7">
+      <word>curious</word>
+      <hint>The ______ puppy sniffed around every corner of the house.</hint>
+      <meaning>Eager to know or learn something new.</meaning>
+      <category>Suffixes (-ous)</category>
+    </question>
+    <question id="8">
+      <word>adventure</word>
+      <hint>Exploring the enchanted forest was an unforgettable ______.</hint>
+      <meaning>An exciting, unusual, and thrilling experience.</meaning>
+      <category>Core Vocabulary</category>
+    </question>
+  </set>
+  <set id="5" player="younger" name="Set 5: Phonics – 'AU' Sound">
+    <question id="1">
+      <word>author</word>
+      <hint>The talented ______ signed copies of her new storybook.</hint>
+      <meaning>A person who writes books, stories, or articles.</meaning>
+      <category>AU Sound</category>
+    </question>
+    <question id="2">
+      <word>autumn</word>
+      <hint>Golden leaves fall from the trees during chilly ______ days.</hint>
+      <meaning>The season between summer and winter.</meaning>
+      <category>AU Sound</category>
+    </question>
+    <question id="3">
+      <word>launch</word>
+      <hint>The space rocket will ______ into the sky at midnight.</hint>
+      <meaning>Set a boat or rocket in motion, or start an activity.</meaning>
+      <category>AU Sound</category>
+    </question>
+    <question id="4">
+      <word>pause</word>
+      <hint>Marc pressed the button to ______ his favourite cartoon.</hint>
+      <meaning>A temporary stop or hesitation in an action.</meaning>
+      <category>AU Sound</category>
+    </question>
+    <question id="5">
+      <word>sauce</word>
+      <hint>We poured delicious warm tomato ______ over our pasta.</hint>
+      <meaning>A liquid or semi-solid substance served with food.</meaning>
+      <category>AU Sound</category>
+    </question>
+    <question id="6">
+      <word>fault</word>
+      <hint>It was not your ______ that the glass slipped and broke.</hint>
+      <meaning>Responsibility for a mistake or an error.</meaning>
+      <category>AU Sound</category>
+    </question>
+    <question id="7">
+      <word>haunt</word>
+      <hint>Old ghost stories say a phantom spirit is said to ______ the castle.</hint>
+      <meaning>Manifest itself in or visit a place as a ghost.</meaning>
+      <category>AU Sound</category>
+    </question>
+    <question id="8">
+      <word>applaud</word>
+      <hint>The audience began to cheer and ______ after the piano recital.</hint>
+      <meaning>Show approval or praise by clapping hands.</meaning>
+      <category>AU Sound</category>
+    </question>
+    <question id="9">
+      <word>caution</word>
+      <hint>A bright yellow sign warned drivers to proceed with ______.</hint>
+      <meaning>Care taken to avoid danger or mistakes.</meaning>
+      <category>AU Sound</category>
+    </question>
+    <question id="10">
+      <word>astronaut</word>
+      <hint>The brave ______ floated weightlessly outside the space station.</hint>
+      <meaning>A person trained to travel in a spacecraft.</meaning>
+      <category>AU Sound</category>
+    </question>
+  </set>
+  <set id="6" player="younger" name="Set 6: Phonics – 'AW' Sound">
+    <question id="1">
+      <word>crawl</word>
+      <hint>The curious baby started to ______ across the soft rug.</hint>
+      <meaning>Move forward on the hands and knees.</meaning>
+      <category>AW Sound</category>
+    </question>
+    <question id="2">
+      <word>yawn</word>
+      <hint>When you feel sleepy, you might open your mouth and ______.</hint>
+      <meaning>Involuntarily open the mouth wide and inhale deeply.</meaning>
+      <category>AW Sound</category>
+    </question>
+    <question id="3">
+      <word>lawn</word>
+      <hint>Dad mowed the green grass on the front ______ this morning.</hint>
+      <meaning>An area of closely cut grass in a garden or park.</meaning>
+      <category>AW Sound</category>
+    </question>
+    <question id="4">
+      <word>draw</word>
+      <hint>Marc used coloured pencils to ______ a majestic castle.</hint>
+      <meaning>Produce a picture or diagram by making lines and marks.</meaning>
+      <category>AW Sound</category>
+    </question>
+    <question id="5">
+      <word>claw</word>
+      <hint>The golden eagle snatched a twig with its sharp curved ______.</hint>
+      <meaning>A curved, pointed nail on each digit of the foot in birds or animals.</meaning>
+      <category>AW Sound</category>
+    </question>
+    <question id="6">
+      <word>hawk</word>
+      <hint>A fierce predatory ______ soared high above the open fields.</hint>
+      <meaning>A bird of prey with broad rounded wings and a long tail.</meaning>
+      <category>AW Sound</category>
+    </question>
+    <question id="7">
+      <word>straw</word>
+      <hint>He drank his cold strawberry smoothie through a paper ______.</hint>
+      <meaning>A thin tube of paper or plastic for sucking up liquids.</meaning>
+      <category>AW Sound</category>
+    </question>
+    <question id="8">
+      <word>prawn</word>
+      <hint>Mum cooked noodles with fresh juicy garlic ______ for dinner.</hint>
+      <meaning>A marine crustacean resembling a large shrimp.</meaning>
+      <category>AW Sound</category>
+    </question>
+    <question id="9">
+      <word>shawl</word>
+      <hint>Grandma wrapped a warm woollen ______ around her shoulders.</hint>
+      <meaning>A piece of fabric worn over the shoulders or head.</meaning>
+      <category>AW Sound</category>
+    </question>
+    <question id="10">
+      <word>dawn</word>
+      <hint>The rooster crowed early in the morning just before ______.</hint>
+      <meaning>The first appearance of light in the sky before sunrise.</meaning>
+      <category>AW Sound</category>
+    </question>
+  </set>
+  <set id="7" player="younger" name="Set 7: Phonics – 'OW' Sound">
+    <question id="1">
+      <word>crown</word>
+      <hint>The royal prince wore a sparkling golden ______ on his head.</hint>
+      <meaning>An ornamental circular headdress worn by a monarch.</meaning>
+      <category>OW Sound</category>
+    </question>
+    <question id="2">
+      <word>brown</word>
+      <hint>The little puppy had fluffy dark ______ fur and floppy ears.</hint>
+      <meaning>A colour produced by mixing red, yellow, and blue.</meaning>
+      <category>OW Sound</category>
+    </question>
+    <question id="3">
+      <word>clown</word>
+      <hint>The cheerful circus ______ made funny balloon animals for everyone.</hint>
+      <meaning>A comic entertainer who wears traditional makeup and costume.</meaning>
+      <category>OW Sound</category>
+    </question>
+    <question id="4">
+      <word>crowd</word>
+      <hint>A cheering ______ gathered outside to welcome the champions.</hint>
+      <meaning>A large number of people gathered together in a disorganized way.</meaning>
+      <category>OW Sound</category>
+    </question>
+    <question id="5">
+      <word>frown</word>
+      <hint>A puzzled ______ appeared on his face when he read the riddle.</hint>
+      <meaning>A facial expression indicating displeasure, confusion, or concentration.</meaning>
+      <category>OW Sound</category>
+    </question>
+    <question id="6">
+      <word>growl</word>
+      <hint>The watchdog gave a deep warning ______ behind the fence.</hint>
+      <meaning>Make a low guttural sound of hostility in the throat.</meaning>
+      <category>OW Sound</category>
+    </question>
+    <question id="7">
+      <word>howl</word>
+      <hint>The wolf lifted its head to ______ at the bright full moon.</hint>
+      <meaning>Make a long, loud, doleful cry uttering sorrow or calling.</meaning>
+      <category>OW Sound</category>
+    </question>
+    <question id="8">
+      <word>tower</word>
+      <hint>We climbed the spiral stone steps up to the castle ______.</hint>
+      <meaning>A tall, narrow building or structure rising high in the air.</meaning>
+      <category>OW Sound</category>
+    </question>
+    <question id="9">
+      <word>shower</word>
+      <hint>A sudden refreshing rain ______ cooled down the hot summer day.</hint>
+      <meaning>A brief and usually light fall of rain, or a bath in sprayed water.</meaning>
+      <category>OW Sound</category>
+    </question>
+    <question id="10">
+      <word>flower</word>
+      <hint>A lovely yellow sunflower ______ bloomed brightly in the garden.</hint>
+      <meaning>The seed-bearing part of a plant, consisting of reproductive organs.</meaning>
+      <category>OW Sound</category>
+    </question>
+  </set>
+  <set id="8" player="older" name="Set 1: Column 1 (accommodate – bruise)">
+    <question id="1">
+      <word>accommodate</word>
+      <hint>The grand holiday hotel had enough rooms to ______ all the guests comfortably.</hint>
+      <meaning>Provide lodging or sufficient space for.</meaning>
+      <category>Statutory Spellings (A-B)</category>
+    </question>
+    <question id="2">
+      <word>accompany</word>
+      <hint>Jasper asked his brother to ______ him on the afternoon walk through the park.</hint>
+      <meaning>Go somewhere with someone as a companion.</meaning>
+      <category>Statutory Spellings (A-B)</category>
+    </question>
+    <question id="3">
+      <word>according</word>
+      <hint>The children lined up quietly ______ to their teacher's instructions.</hint>
+      <meaning>As stated by or in proportion to.</meaning>
+      <category>Statutory Spellings (A-B)</category>
+    </question>
+    <question id="4">
+      <word>achieve</word>
+      <hint>With continuous dedication and practice, you will ______ top marks in the test.</hint>
+      <meaning>Successfully bring about or reach by effort.</meaning>
+      <category>Statutory Spellings (A-B)</category>
+    </question>
+    <question id="5">
+      <word>aggressive</word>
+      <hint>The guard dog barked in an ______ manner to protect the house.</hint>
+      <meaning>Ready or likely to attack or confront.</meaning>
+      <category>Statutory Spellings (A-B)</category>
+    </question>
+    <question id="6">
+      <word>amateur</word>
+      <hint>The community photography contest is open to both ______ and professional photographers.</hint>
+      <meaning>Engaging in an activity as a pastime rather than a profession.</meaning>
+      <category>Statutory Spellings (A-B)</category>
+    </question>
+    <question id="7">
+      <word>ancient</word>
+      <hint>Historians uncovered the stone ruins of an ______ Roman fortress.</hint>
+      <meaning>Belonging to the very distant past.</meaning>
+      <category>Statutory Spellings (A-B)</category>
+    </question>
+    <question id="8">
+      <word>apparent</word>
+      <hint>It was immediately ______ from the dark stormy clouds that rain was on the way.</hint>
+      <meaning>Clearly visible or understood; obvious.</meaning>
+      <category>Statutory Spellings (A-B)</category>
+    </question>
+    <question id="9">
+      <word>appreciate</word>
+      <hint>We truly ______ all the hard work mum puts into cooking our delicious meals.</hint>
+      <meaning>Recognize the full worth of; be grateful for.</meaning>
+      <category>Statutory Spellings (A-B)</category>
+    </question>
+    <question id="10">
+      <word>attached</word>
+      <hint>Please check the ______ document for the complete tournament timetable.</hint>
+      <meaning>Joined or fastened to something; connected.</meaning>
+      <category>Statutory Spellings (A-B)</category>
+    </question>
+    <question id="11">
+      <word>available</word>
+      <hint>Extra study revision guides are now ______ in the school library.</hint>
+      <meaning>Able to be used or obtained.</meaning>
+      <category>Statutory Spellings (A-B)</category>
+    </question>
+    <question id="12">
+      <word>average</word>
+      <hint>The ______ daily temperature in Leeds during July is around nineteen degrees.</hint>
+      <meaning>A typical amount, rate, or level.</meaning>
+      <category>Statutory Spellings (A-B)</category>
+    </question>
+    <question id="13">
+      <word>awkward</word>
+      <hint>Carrying the heavy, bulky cardboard box down the stairs was very ______.</hint>
+      <meaning>Hard to do or deal with; clumsy.</meaning>
+      <category>Statutory Spellings (A-B)</category>
+    </question>
+    <question id="14">
+      <word>bargain</word>
+      <hint>Buying the second-hand bicycle at half its retail price was an incredible ______.</hint>
+      <meaning>A thing bought or offered for sale more cheaply than usual.</meaning>
+      <category>Statutory Spellings (A-B)</category>
+    </question>
+    <question id="15">
+      <word>bruise</word>
+      <hint>He got a purple ______ on his knee after falling off his scooter.</hint>
+      <meaning>A dark mark on the skin caused by an impact or injury.</meaning>
+      <category>Statutory Spellings (A-B)</category>
+    </question>
+  </set>
+  <set id="9" player="older" name="Set 2: Column 2 (category – desperate)">
+    <question id="1">
+      <word>category</word>
+      <hint>Each book in the local library is placed neatly in its correct ______.</hint>
+      <meaning>A class or division of people or things regarded as having particular shared characteristics.</meaning>
+      <category>Statutory Spellings (C-D)</category>
+    </question>
+    <question id="2">
+      <word>cemetery</word>
+      <hint>Visitors walked solemnly past the ancient marble headstones in the peaceful ______.</hint>
+      <meaning>A burial ground or graveyard.</meaning>
+      <category>Statutory Spellings (C-D)</category>
+    </question>
+    <question id="3">
+      <word>committee</word>
+      <hint>The school council formed a special ______ to plan the summer sports day.</hint>
+      <meaning>A group of people appointed for a specific function by a larger group.</meaning>
+      <category>Statutory Spellings (C-D)</category>
+    </question>
+    <question id="4">
+      <word>communicate</word>
+      <hint>Modern satellites and internet cables allow scientists to ______ around the world.</hint>
+      <meaning>Share or exchange information, news, or ideas.</meaning>
+      <category>Statutory Spellings (C-D)</category>
+    </question>
+    <question id="5">
+      <word>community</word>
+      <hint>Our local neighbourhood ______ came together to clean up the park.</hint>
+      <meaning>A group of people living in the same place or having particular characteristics in common.</meaning>
+      <category>Statutory Spellings (C-D)</category>
+    </question>
+    <question id="6">
+      <word>competition</word>
+      <hint>Jasper was thrilled to win a gold trophy in the national chess ______.</hint>
+      <meaning>An event or contest in which people strive against each other.</meaning>
+      <category>Statutory Spellings (C-D)</category>
+    </question>
+    <question id="7">
+      <word>conscience</word>
+      <hint>His guilty ______ urged him to return the lost wallet immediately.</hint>
+      <meaning>An inner feeling or voice acting as a guide to the rightness or wrongness of one's behaviour.</meaning>
+      <category>Statutory Spellings (C-D)</category>
+    </question>
+    <question id="8">
+      <word>conscious</word>
+      <hint>Doctors checked to see if the injured patient was awake and ______.</hint>
+      <meaning>Aware of and responding to one's surroundings.</meaning>
+      <category>Statutory Spellings (C-D)</category>
+    </question>
+    <question id="9">
+      <word>controversy</word>
+      <hint>The referee's final decision sparked huge debate and ______ among the football fans.</hint>
+      <meaning>Prolonged public disagreement or heated discussion.</meaning>
+      <category>Statutory Spellings (C-D)</category>
+    </question>
+    <question id="10">
+      <word>convenience</word>
+      <hint>Having a grocery supermarket right next door is a wonderful ______.</hint>
+      <meaning>The state of being able to proceed with something with little effort or difficulty.</meaning>
+      <category>Statutory Spellings (C-D)</category>
+    </question>
+    <question id="11">
+      <word>correspond</word>
+      <hint>The police checked whether the suspect's fingerprints ______ with those at the scene.</hint>
+      <meaning>Match or agree almost exactly; communicate by exchanging letters or emails.</meaning>
+      <category>Statutory Spellings (C-D)</category>
+    </question>
+    <question id="12">
+      <word>criticise</word>
+      <hint>It is easy to ______ others, but much harder to offer helpful solutions.</hint>
+      <meaning>Indicate the faults of someone or something in a disapproving way.</meaning>
+      <category>Statutory Spellings (C-D)</category>
+    </question>
+    <question id="13">
+      <word>curiosity</word>
+      <hint>Filled with burning ______, the boy opened the mysterious antique chest.</hint>
+      <meaning>A strong desire to know or learn something.</meaning>
+      <category>Statutory Spellings (C-D)</category>
+    </question>
+    <question id="14">
+      <word>definite</word>
+      <hint>We have made a ______ plan to visit the science museum this Saturday.</hint>
+      <meaning>Clearly stated or decided; not vague or doubtful.</meaning>
+      <category>Statutory Spellings (C-D)</category>
+    </question>
+    <question id="15">
+      <word>desperate</word>
+      <hint>After running out of petrol on the motorway, the driver was ______ for help.</hint>
+      <meaning>Feeling or showing a hopeless sense that a situation is impossible to deal with.</meaning>
+      <category>Statutory Spellings (C-D)</category>
+    </question>
+  </set>
+  <set id="10" player="older" name="Set 3: Column 3 (determined – familiar)">
+    <question id="1">
+      <word>determined</word>
+      <hint>Jasper was completely ______ to master every tricky spelling word before the test.</hint>
+      <meaning>Having made a firm decision and being resolved not to change it.</meaning>
+      <category>Statutory Spellings (D-F)</category>
+    </question>
+    <question id="2">
+      <word>develop</word>
+      <hint>Scientists continue to ______ clean renewable technologies to protect our environment.</hint>
+      <meaning>Grow or cause to grow and become more mature, advanced, or elaborate.</meaning>
+      <category>Statutory Spellings (D-F)</category>
+    </question>
+    <question id="3">
+      <word>dictionary</word>
+      <hint>If you are unsure of a word's definition, you should look it up in a ______.</hint>
+      <meaning>A book or electronic resource that lists words and their meanings.</meaning>
+      <category>Statutory Spellings (D-F)</category>
+    </question>
+    <question id="4">
+      <word>disastrous</word>
+      <hint>The sudden flood had a ______ impact on the small farming village.</hint>
+      <meaning>Causing great damage; highly unsuccessful.</meaning>
+      <category>Statutory Spellings (D-F)</category>
+    </question>
+    <question id="5">
+      <word>embarrass</word>
+      <hint>Please do not ______ your little brother by teasing him about his haircut.</hint>
+      <meaning>Cause someone to feel awkward, self-conscious, or ashamed.</meaning>
+      <category>Statutory Spellings (D-F)</category>
+    </question>
+    <question id="6">
+      <word>environment</word>
+      <hint>Recycling plastics helps preserve the natural ______ for animals and plants.</hint>
+      <meaning>The surroundings or conditions in which a person, animal, or plant lives or operates.</meaning>
+      <category>Statutory Spellings (D-F)</category>
+    </question>
+    <question id="7">
+      <word>equip</word>
+      <hint>The school allocated funds to ______ the new science laboratory with microscopes.</hint>
+      <meaning>Supply with the necessary items for a particular purpose.</meaning>
+      <category>Statutory Spellings (D-F)</category>
+    </question>
+    <question id="8">
+      <word>equipped</word>
+      <hint>The arctic explorers were fully ______ with thermal parkas and satellite radios.</hint>
+      <meaning>Supplied with the necessary tools, items, or abilities.</meaning>
+      <category>Statutory Spellings (D-F)</category>
+    </question>
+    <question id="9">
+      <word>equipment</word>
+      <hint>Remember to pack all your PE sports ______ into your school bag tonight.</hint>
+      <meaning>The necessary items for a particular purpose or activity.</meaning>
+      <category>Statutory Spellings (D-F)</category>
+    </question>
+    <question id="10">
+      <word>especially</word>
+      <hint>He loves reading adventure novels, ______ fantasy tales with dragons and wizards.</hint>
+      <meaning>Used to single out one person, thing, or situation over all others.</meaning>
+      <category>Statutory Spellings (D-F)</category>
+    </question>
+    <question id="11">
+      <word>exaggerate</word>
+      <hint>Storytellers often ______ details to make their tales sound even more thrilling.</hint>
+      <meaning>Represent something as being larger, greater, better, or worse than it really is.</meaning>
+      <category>Statutory Spellings (D-F)</category>
+    </question>
+    <question id="12">
+      <word>excellent</word>
+      <hint>The teacher praised the class for their ______ behaviour during the museum trip.</hint>
+      <meaning>Extremely good; outstanding.</meaning>
+      <category>Statutory Spellings (D-F)</category>
+    </question>
+    <question id="13">
+      <word>existence</word>
+      <hint>Astronomers search deep space to detect the ______ of water on distant planets.</hint>
+      <meaning>The fact or state of living or having objective reality.</meaning>
+      <category>Statutory Spellings (D-F)</category>
+    </question>
+    <question id="14">
+      <word>explanation</word>
+      <hint>The science textbook gave a very clear ______ of how rainbows form.</hint>
+      <meaning>A statement or account that makes something clear.</meaning>
+      <category>Statutory Spellings (D-F)</category>
+    </question>
+    <question id="15">
+      <word>familiar</word>
+      <hint>Walking down the high street, she saw a warm and ______ face waving at her.</hint>
+      <meaning>Well known from long or close association.</meaning>
+      <category>Statutory Spellings (D-F)</category>
+    </question>
+  </set>
+  <set id="11" player="older" name="Set 4: Column 4 (foreign – leisure)">
+    <question id="1">
+      <word>foreign</word>
+      <hint>Learning to speak a ______ language opens up exciting opportunities to travel.</hint>
+      <meaning>Of, from, in, or characteristic of a country or language other than one's own.</meaning>
+      <category>Statutory Spellings (F-L)</category>
+    </question>
+    <question id="2">
+      <word>forty</word>
+      <hint>There are ______ students signed up for the weekend chess tournament.</hint>
+      <meaning>The number equivalent to the product of four and ten; 40.</meaning>
+      <category>Statutory Spellings (F-L)</category>
+    </question>
+    <question id="3">
+      <word>frequently</word>
+      <hint>Express passenger trains run ______ between Leeds and Manchester every hour.</hint>
+      <meaning>Regularly or at short intervals.</meaning>
+      <category>Statutory Spellings (F-L)</category>
+    </question>
+    <question id="4">
+      <word>government</word>
+      <hint>The national ______ introduced new policies to promote green renewable energy.</hint>
+      <meaning>The group of people with the authority to govern a country or state.</meaning>
+      <category>Statutory Spellings (F-L)</category>
+    </question>
+    <question id="5">
+      <word>guarantee</word>
+      <hint>The computer manufacturer offered a full two-year ______ with the laptop.</hint>
+      <meaning>A formal assurance or promise that certain conditions will be fulfilled.</meaning>
+      <category>Statutory Spellings (F-L)</category>
+    </question>
+    <question id="6">
+      <word>harass</word>
+      <hint>The playground rules strictly forbid anyone to bully or ______ other pupils.</hint>
+      <meaning>Subject to aggressive pressure or intimidation.</meaning>
+      <category>Statutory Spellings (F-L)</category>
+    </question>
+    <question id="7">
+      <word>hindrance</word>
+      <hint>The fallen tree trunk across the narrow road was a major ______ to traffic.</hint>
+      <meaning>A thing that provides resistance, delay, or obstruction to something or someone.</meaning>
+      <category>Statutory Spellings (F-L)</category>
+    </question>
+    <question id="8">
+      <word>identity</word>
+      <hint>The secret agent took great care never to reveal his true ______.</hint>
+      <meaning>The fact of being who or what a person or thing is.</meaning>
+      <category>Statutory Spellings (F-L)</category>
+    </question>
+    <question id="9">
+      <word>immediate</word>
+      <hint>The sound of the fire alarm demanded an ______ exit from the building.</hint>
+      <meaning>Occurring or done at once; instant.</meaning>
+      <category>Statutory Spellings (F-L)</category>
+    </question>
+    <question id="10">
+      <word>immediately</word>
+      <hint>When the bell rang, the children ______ packed away their textbooks.</hint>
+      <meaning>At once; instantly.</meaning>
+      <category>Statutory Spellings (F-L)</category>
+    </question>
+    <question id="11">
+      <word>individual</word>
+      <hint>Each ______ player contributed their best effort to help the team win.</hint>
+      <meaning>Single; separate; considered separately from a group.</meaning>
+      <category>Statutory Spellings (F-L)</category>
+    </question>
+    <question id="12">
+      <word>interfere</word>
+      <hint>Parents advised the boys not to ______ in matters that did not concern them.</hint>
+      <meaning>Intervene in a situation without invitation or necessity.</meaning>
+      <category>Statutory Spellings (F-L)</category>
+    </question>
+    <question id="13">
+      <word>interrupt</word>
+      <hint>It is polite to wait until someone finishes speaking before you ______.</hint>
+      <meaning>Stop the continuous progress of an activity or person speaking.</meaning>
+      <category>Statutory Spellings (F-L)</category>
+    </question>
+    <question id="14">
+      <word>language</word>
+      <hint>English is a global ______ spoken by hundreds of millions of people.</hint>
+      <meaning>A system of communication used by a particular country or community.</meaning>
+      <category>Statutory Spellings (F-L)</category>
+    </question>
+    <question id="15">
+      <word>leisure</word>
+      <hint>In his weekend ______ time, he enjoys building Lego models and cycling.</hint>
+      <meaning>Time when one is not working or occupied; free time.</meaning>
+      <category>Statutory Spellings (F-L)</category>
+    </question>
+  </set>
+  <set id="12" player="older" name="Set 5: Column 5 (lightning – privilege)">
+    <question id="1">
+      <word>lightning</word>
+      <hint>A blinding flash of ______ illuminated the stormy night sky before the thunder cracked.</hint>
+      <meaning>The occurrence of a natural electrical discharge between a cloud and the ground.</meaning>
+      <category>Statutory Spellings (L-P)</category>
+    </question>
+    <question id="2">
+      <word>marvellous</word>
+      <hint>We had a ______ day out at the seaside building giant sandcastles.</hint>
+      <meaning>Causing great wonder; extraordinary.</meaning>
+      <category>Statutory Spellings (L-P)</category>
+    </question>
+    <question id="3">
+      <word>mischievous</word>
+      <hint>The ______ puppy snatched dad's slipper and ran gleefully into the garden.</hint>
+      <meaning>Causing or showing a fondness for causing trouble in a playful way.</meaning>
+      <category>Statutory Spellings (L-P)</category>
+    </question>
+    <question id="4">
+      <word>muscle</word>
+      <hint>Regular exercise and swimming help build strong skeletal ______ strength.</hint>
+      <meaning>A band or bundle of fibrous tissue in a human or animal body that has the ability to contract.</meaning>
+      <category>Statutory Spellings (L-P)</category>
+    </question>
+    <question id="5">
+      <word>necessary</word>
+      <hint>It is strictly ______ to pack a waterproof raincoat when walking in the Yorkshire Dales.</hint>
+      <meaning>Required to be done, achieved, or present; needed; essential.</meaning>
+      <category>Statutory Spellings (L-P)</category>
+    </question>
+    <question id="6">
+      <word>neighbour</word>
+      <hint>Our friendly next-door ______ offered to water our plants while we were on holiday.</hint>
+      <meaning>A person living next door to or very near to the speaker.</meaning>
+      <category>Statutory Spellings (L-P)</category>
+    </question>
+    <question id="7">
+      <word>nuisance</word>
+      <hint>The persistent buzzing fly in the bedroom became an unbearable ______.</hint>
+      <meaning>A person or thing causing inconvenience or annoyance.</meaning>
+      <category>Statutory Spellings (L-P)</category>
+    </question>
+    <question id="8">
+      <word>occupy</word>
+      <hint>During the rainy afternoon, board games will ______ the children for hours.</hint>
+      <meaning>Take up a space, time, or position; fill.</meaning>
+      <category>Statutory Spellings (L-P)</category>
+    </question>
+    <question id="9">
+      <word>occur</word>
+      <hint>Solar eclipses are rare celestial events that only ______ every few years.</hint>
+      <meaning>Happen; take place.</meaning>
+      <category>Statutory Spellings (L-P)</category>
+    </question>
+    <question id="10">
+      <word>opportunity</word>
+      <hint>Studying hard gave him the wonderful ______ to attend a prestigious university.</hint>
+      <meaning>A set of circumstances that makes it possible to do something.</meaning>
+      <category>Statutory Spellings (L-P)</category>
+    </question>
+    <question id="11">
+      <word>parliament</word>
+      <hint>Elected members of ______ gathered in London to debate the new education bill.</hint>
+      <meaning>The highest legislature in the UK, consisting of the Sovereign, the House of Lords, and the House of Commons.</meaning>
+      <category>Statutory Spellings (L-P)</category>
+    </question>
+    <question id="12">
+      <word>persuade</word>
+      <hint>She tried hard to ______ her parents to let her adopt a rescue kitten.</hint>
+      <meaning>Induce someone to do or believe something through reasoning or argument.</meaning>
+      <category>Statutory Spellings (L-P)</category>
+    </question>
+    <question id="13">
+      <word>physical</word>
+      <hint>Playing football and running races are great forms of healthy ______ activity.</hint>
+      <meaning>Relating to the body as opposed to the mind.</meaning>
+      <category>Statutory Spellings (L-P)</category>
+    </question>
+    <question id="14">
+      <word>prejudice</word>
+      <hint>A welcoming and harmonious school treats everyone fairly with zero tolerance for ______.</hint>
+      <meaning>Preconceived opinion that is not based on reason or actual experience.</meaning>
+      <category>Statutory Spellings (L-P)</category>
+    </question>
+    <question id="15">
+      <word>privilege</word>
+      <hint>It was an absolute honour and a ______ to carry the Olympic torch through our town.</hint>
+      <meaning>A special right, advantage, or immunity granted or available only to a particular person or group.</meaning>
+      <category>Statutory Spellings (L-P)</category>
+    </question>
+  </set>
+  <set id="13" player="older" name="Set 6: Column 6 (profession – sincere)">
+    <question id="1">
+      <word>profession</word>
+      <hint>Teaching is a highly respected ______ that shapes the minds of future generations.</hint>
+      <meaning>A paid occupation, especially one that involves prolonged training and a formal qualification.</meaning>
+      <category>Statutory Spellings (P-S)</category>
+    </question>
+    <question id="2">
+      <word>programme</word>
+      <hint>The school computing club showed pupils how to write a Python ______.</hint>
+      <meaning>A planned series of events or a set of coded software instructions.</meaning>
+      <category>Statutory Spellings (P-S)</category>
+    </question>
+    <question id="3">
+      <word>pronunciation</word>
+      <hint>Listening to native audio recordings helps improve your English ______.</hint>
+      <meaning>The way in which a word is pronounced.</meaning>
+      <category>Statutory Spellings (P-S)</category>
+    </question>
+    <question id="4">
+      <word>queue</word>
+      <hint>We had to wait patiently in a long ticket ______ outside the cinema.</hint>
+      <meaning>A line or sequence of people or vehicles awaiting their turn to be attended to.</meaning>
+      <category>Statutory Spellings (P-S)</category>
+    </question>
+    <question id="5">
+      <word>recognise</word>
+      <hint>Even after five years, she was still able to ______ her childhood best friend.</hint>
+      <meaning>Identify someone or something from having encountered them before.</meaning>
+      <category>Statutory Spellings (P-S)</category>
+    </question>
+    <question id="6">
+      <word>recommend</word>
+      <hint>Can you ______ a gripping mystery novel for me to read over the holidays?</hint>
+      <meaning>Put forward with approval as being suitable for a particular purpose or role.</meaning>
+      <category>Statutory Spellings (P-S)</category>
+    </question>
+    <question id="7">
+      <word>relevant</word>
+      <hint>Please ensure all facts included in your historical report are directly ______ to the topic.</hint>
+      <meaning>Closely connected or appropriate to what is being done or considered.</meaning>
+      <category>Statutory Spellings (P-S)</category>
+    </question>
+    <question id="8">
+      <word>restaurant</word>
+      <hint>Our family booked a table at our favourite Italian ______ for a pasta dinner.</hint>
+      <meaning>A place where people pay to sit and eat meals that are cooked and served on the premises.</meaning>
+      <category>Statutory Spellings (P-S)</category>
+    </question>
+    <question id="9">
+      <word>rhyme</word>
+      <hint>Poets often use words like 'bright' and 'night' that ______ together beautifully.</hint>
+      <meaning>Correspondence of sound between words or the endings of words.</meaning>
+      <category>Statutory Spellings (P-S)</category>
+    </question>
+    <question id="10">
+      <word>rhythm</word>
+      <hint>The energetic drummer kept a lively, steady ______ throughout the concert.</hint>
+      <meaning>A strong, regular repeated pattern of movement or sound.</meaning>
+      <category>Statutory Spellings (P-S)</category>
+    </question>
+    <question id="11">
+      <word>sacrifice</word>
+      <hint>Parents often make great financial ______ to ensure their children have the best education.</hint>
+      <meaning>An act of giving up something valued for the sake of something else considered more important.</meaning>
+      <category>Statutory Spellings (P-S)</category>
+    </question>
+    <question id="12">
+      <word>secretary</word>
+      <hint>The school ______ greeted parents warmly at the reception desk and answered the phone.</hint>
+      <meaning>A person employed by an individual or in an office to assist with correspondence and administrative tasks.</meaning>
+      <category>Statutory Spellings (P-S)</category>
+    </question>
+    <question id="13">
+      <word>shoulder</word>
+      <hint>He slung his heavy school rucksack comfortably over his right ______.</hint>
+      <meaning>The joint connecting the arm or forelimb with the rest of the body.</meaning>
+      <category>Statutory Spellings (P-S)</category>
+    </question>
+    <question id="14">
+      <word>signature</word>
+      <hint>The author signed his neat ______ inside the front cover of the book.</hint>
+      <meaning>A person's name written in a distinctive way as a form of identification.</meaning>
+      <category>Statutory Spellings (P-S)</category>
+    </question>
+    <question id="15">
+      <word>sincere</word>
+      <hint>She offered her warm and ______ thanks for all the kind birthday wishes.</hint>
+      <meaning>Free from pretence or deceit; proceeding from genuine feelings.</meaning>
+      <category>Statutory Spellings (P-S)</category>
+    </question>
+  </set>
+  <set id="14" player="older" name="Set 7: Column 7 (sincerely – yacht)">
+    <question id="1">
+      <word>sincerely</word>
+      <hint>He closed the polite business letter with the formal phrase 'Yours ______'.</hint>
+      <meaning>In a sincere or genuine way; honestly.</meaning>
+      <category>Statutory Spellings (S-Y)</category>
+    </question>
+    <question id="2">
+      <word>soldier</word>
+      <hint>The courageous ______ stood guard faithfully at the historic palace gates.</hint>
+      <meaning>A person who serves in an army.</meaning>
+      <category>Statutory Spellings (S-Y)</category>
+    </question>
+    <question id="3">
+      <word>stomach</word>
+      <hint>Eating too many sugary sweets gave the boy a painful ache in his ______.</hint>
+      <meaning>The internal organ in which the major part of the digestion of food occurs.</meaning>
+      <category>Statutory Spellings (S-Y)</category>
+    </question>
+    <question id="4">
+      <word>sufficient</word>
+      <hint>Do we have ______ flour and butter in the pantry to bake two dozen cupcakes?</hint>
+      <meaning>Enough; adequate.</meaning>
+      <category>Statutory Spellings (S-Y)</category>
+    </question>
+    <question id="5">
+      <word>suggest</word>
+      <hint>May I ______ that we take the scenic train route through the countryside?</hint>
+      <meaning>Put forward for consideration; propose.</meaning>
+      <category>Statutory Spellings (S-Y)</category>
+    </question>
+    <question id="6">
+      <word>symbol</word>
+      <hint>The white dove is an internationally recognized ______ of peace and hope.</hint>
+      <meaning>A mark or character used as a conventional representation of an object, function, or process.</meaning>
+      <category>Statutory Spellings (S-Y)</category>
+    </question>
+    <question id="7">
+      <word>system</word>
+      <hint>The human circulatory ______ transports oxygen and nutrients throughout the body.</hint>
+      <meaning>A set of things working together as parts of a mechanism or an interconnecting network.</meaning>
+      <category>Statutory Spellings (S-Y)</category>
+    </question>
+    <question id="8">
+      <word>temperature</word>
+      <hint>The digital thermometer showed that the boiling water ______ was one hundred degrees.</hint>
+      <meaning>The degree or intensity of heat present in a substance or object.</meaning>
+      <category>Statutory Spellings (S-Y)</category>
+    </question>
+    <question id="9">
+      <word>thorough</word>
+      <hint>The detective conducted a very ______ search of the room to find every hidden clue.</hint>
+      <meaning>Complete with regard to every detail; not superficial or partial.</meaning>
+      <category>Statutory Spellings (S-Y)</category>
+    </question>
+    <question id="10">
+      <word>twelfth</word>
+      <hint>December is the ______ and final month of the calendar year.</hint>
+      <meaning>Constituting number twelve in a sequence; 12th.</meaning>
+      <category>Statutory Spellings (S-Y)</category>
+    </question>
+    <question id="11">
+      <word>variety</word>
+      <hint>The fruit market stall sold an impressive ______ of crisp apples and sweet berries.</hint>
+      <meaning>The quality or state of being different or diverse; an assortment.</meaning>
+      <category>Statutory Spellings (S-Y)</category>
+    </question>
+    <question id="12">
+      <word>vegetable</word>
+      <hint>Eating plenty of fresh green ______ like broccoli and spinach is good for your health.</hint>
+      <meaning>A plant or part of a plant used as food.</meaning>
+      <category>Statutory Spellings (S-Y)</category>
+    </question>
+    <question id="13">
+      <word>vehicle</word>
+      <hint>An electric car is a modern and eco-friendly road ______.</hint>
+      <meaning>A thing used for transporting people or goods, especially on land, such as a car, lorry, or cart.</meaning>
+      <category>Statutory Spellings (S-Y)</category>
+    </question>
+    <question id="14">
+      <word>yacht</word>
+      <hint>The luxury white sailing ______ drifted gracefully across the sparkling blue bay.</hint>
+      <meaning>A medium-sized sailing boat equipped for cruising or racing.</meaning>
+      <category>Statutory Spellings (S-Y)</category>
+    </question>
+  </set>
+</spellingGame>
